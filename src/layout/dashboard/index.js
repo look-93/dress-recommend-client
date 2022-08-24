@@ -8,6 +8,8 @@ import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import MuiDrawer from "@mui/material/Drawer";
 import { styled } from "@mui/material/styles";
 import { useState } from "react";
+import MuiAppBar from "@mui/material/AppBar";
+import MenuIcon from "@mui/icons-material/Menu";
 
 const drawerWidth = 240;
 
@@ -26,6 +28,18 @@ const Drawer = styled(MuiDrawer, {
   },
 }));
 
+const AppBar = styled(MuiAppBar, {
+  shouldForwardProp: (prop) => prop !== "open",
+})(({ theme, open }) => ({
+  zIndex: theme.zIndex.drawer + 1,
+  transition: theme.transitions.create(["width", "margin"], {}),
+  ...(open && {
+    marginLeft: drawerWidth,
+    width: `calc(100% - ${drawerWidth}px)`,
+    transition: theme.transitions.create(["width", "margin"], {}),
+  }),
+}));
+
 function DerssRecommend() {
   const [open, setOpen] = useState(false);
   const toggleDrawer = () => {
@@ -33,16 +47,18 @@ function DerssRecommend() {
   };
 
   return (
-    <Box>
+    <Box sx={{ display: "flex" }}>
       <Container maxWidth="lg">
         <Header title="Derss Recommend" />
       </Container>
+
       <Drawer variant="permanent" open={open}>
         <Toolbar
           sx={{
             display: "flex",
             justifyContent: "flex-end",
             px: [1],
+            pr: "24px",
           }}
         >
           <IconButton onClick={toggleDrawer}>

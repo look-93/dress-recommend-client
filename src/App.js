@@ -1,13 +1,15 @@
-import SignIn from "./layout/authentication/sign-in/index";
-import Signup from "./layout/authentication/sign-up/index";
-import Dashboard from "./layout/dashboard/index";
+import Login from "./layout/authentication/login/index";
+// import Signup from "./layout/authentication/sign-up/index";
+// import Dashboard from "./layout/dashboard/index";
+// import SignIn2 from "./layout/authentication/login/index2";
 
 function App() {
   return (
     <div>
-      {/* <SignIn /> */}
+      <Login />
+      {/* <SignIn2 /> */}
       {/* <Signup /> */}
-      <Dashboard />
+      {/* <Dashboard /> */}
     </div>
   );
 }
