@@ -1,26 +1,28 @@
-import { Button, Toolbar, Typography } from "@mui/material";
-import React from "react";
+import {
+  Avatar,
+  Button,
+  Toolbar,
+  AppBar,
+  Typography,
+  Stack,
+} from "@mui/material";
+import CheckroomIcon from "@mui/icons-material/Checkroom";
 
-function Header(props) {
-  const { title } = props;
+export default function Header() {
   return (
-    <Toolbar sx={{ borderBottom: 1, borderColor: "divider" }}>
-      <Typography
-        variant="h5"
-        color="inherit"
-        align="center"
-        noWrap
-        sx={{ flex: 1 }}
-      >
-        {title}
-      </Typography>
-      <Button variant="outlined" size="small" sx={{ m: 1 }}>
-        Sign in
-      </Button>
-      <Button variant="outlined" size="small">
-        Sign up
-      </Button>
-    </Toolbar>
+    <AppBar position="absolute" padding="0" sx={{ bgcolor: "white" }}>
+      <Toolbar>
+        <Avatar sx={{ bgcolor: "primary.main", mr: 1 }}>
+          <CheckroomIcon />
+        </Avatar>
+        <Typography color="primary" variant="h6" sx={{ flexGrow: 1 }}>
+          Dress
+        </Typography>
+        <Stack direction="row" sapcing={2}>
+          <Button disableRipple>로그인</Button>
+          <Button disableRipple>회원가입</Button>
+        </Stack>
+      </Toolbar>
+    </AppBar>
   );
 }
-export default Header;
