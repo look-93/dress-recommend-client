@@ -1,20 +1,20 @@
 import {
-  Avatar,
+  // Avatar,
   Button,
   Toolbar,
   AppBar,
   Typography,
   Stack,
 } from "@mui/material";
-import CheckroomIcon from "@mui/icons-material/Checkroom";
+// import CheckroomIcon from "@mui/icons-material/Checkroom";
+import Side from "./sidevarList";
 
 export default function Header() {
   return (
     <AppBar position="absolute" padding="0" sx={{ bgcolor: "white" }}>
       <Toolbar>
-        <Avatar sx={{ bgcolor: "primary.main", mr: 1 }}>
-          <CheckroomIcon />
-        </Avatar>
+        <Side />
+
         <Typography color="primary" variant="h6" sx={{ flexGrow: 1 }}>
           Dress
         </Typography>
