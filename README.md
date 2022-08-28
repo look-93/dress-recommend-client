@@ -6,3 +6,6 @@ npm install @mui/material @mui/styled-engine-sc styled-components --force
 
 npm install @mui/material @emotion/react @emotion/styled
 --force
+
+사진 관련 (unsplash 가입, 키 필요)
+npx create-react-app unsplash

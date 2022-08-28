@@ -1,15 +1,19 @@
+import React from "react";
 import Login from "./layout/authentication/login/index";
 import Signup from "./layout/authentication/sign-up/index";
-import Side from "./layout/dashboard/sidevarList";
-import Header from "./layout/dashboard/header";
+import Dashboard from "./layout/dashboard/index";
+import Main from "./layout/dashboard/main";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 function App() {
   return (
-    <div>
-      {/* <Login /> */}
-      {/* <Signup /> */}
-      {/* <Header /> */}
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/signup" element={<Signup />}></Route>
+        <Route path="/login" element={<Login />}></Route>
+        <Route path="/" element={<Dashboard />}></Route>
+      </Routes>
+    </BrowserRouter>
   );
 }
 
