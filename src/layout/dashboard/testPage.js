@@ -1,8 +1,7 @@
-import React from 'react';
-
 import { Box, Container, Card } from '@mui/material';
+import DialIcon from './dialIcon';
 
-export default function Main() {
+export default function TestPage() {
   return (
     <Container maxWidth="sm">
       <Box sx={{ mt: 17 }}>
@@ -13,6 +12,7 @@ export default function Main() {
             height="500"
             width="450"
           />
+          <DialIcon />
         </Card>
       </Box>
     </Container>

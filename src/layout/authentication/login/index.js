@@ -7,9 +7,9 @@ import {
   Checkbox,
   Button,
   Avatar,
-} from "@mui/material";
-import CheckroomIcon from "@mui/icons-material/Checkroom";
-import { Link } from "react-router-dom";
+} from '@mui/material';
+import CheckroomIcon from '@mui/icons-material/Checkroom';
+import { Link } from 'react-router-dom';
 
 export default function Login() {
   return (
@@ -17,12 +17,12 @@ export default function Login() {
       <Box
         sx={{
           marginTop: 8,
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
         }}
       >
-        <Avatar sx={{ bgcolor: "#ef6694", mb: 1 }}>
+        <Avatar sx={{ bgcolor: '#ef6694', mb: 1 }}>
           <CheckroomIcon />
         </Avatar>
         <Typography component="h1" variant="h5">
@@ -44,7 +44,6 @@ export default function Login() {
             id="비밀번호"
             label="비밀번호"
             type="password"
-            autoFocus
           />
           <FormControlLabel
             control={
@@ -57,7 +56,7 @@ export default function Login() {
             }
             label="아이디, 비밀번호를 저장하겠습니까?"
           />
-          <Link to="/" style={{ textDecoration: "none" }}>
+          <Link to="/" style={{ textDecoration: 'none' }}>
             <Button variant="contained" value="login" fullWidth sx={{ mt: 1 }}>
               로그인
             </Button>

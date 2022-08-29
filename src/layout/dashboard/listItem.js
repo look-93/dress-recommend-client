@@ -5,11 +5,11 @@ import {
   ListItemButton,
   ListItemText,
   ListSubheader,
-  Stack,
 } from '@mui/material';
 import ExpandLess from '@mui/icons-material/ExpandLess';
 import ExpandMore from '@mui/icons-material/ExpandMore';
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 export default function ListItem() {
   const [open, setOpen] = useState('true');
@@ -21,7 +21,9 @@ export default function ListItem() {
     <List>
       <ListSubheader>Menu</ListSubheader>
       <ListItemButton>
-        <ListItemText primary="test1" />
+        <Link to="testPage" style={{ textDecoration: 'none' }}>
+          <ListItemText primary="test1" />
+        </Link>
       </ListItemButton>
       <ListItemButton>
         <ListItemText primary="test2" />
