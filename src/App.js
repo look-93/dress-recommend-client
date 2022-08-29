@@ -1,9 +1,11 @@
-import React from "react";
-import Login from "./layout/authentication/login/index";
-import Signup from "./layout/authentication/sign-up/index";
-import Dashboard from "./layout/dashboard/index";
-import Main from "./layout/dashboard/main";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import React from 'react';
+import Login from './layout/authentication/login/index';
+import Signup from './layout/authentication/sign-up/index';
+import Dashboard from './layout/dashboard/index';
+import Main from './layout/dashboard/main';
+import ListItem from './layout/dashboard/listItem';
+import Side from './layout/dashboard/sidevarList';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 function App() {
   return (
@@ -14,6 +16,7 @@ function App() {
         <Route path="/" element={<Dashboard />}></Route>
       </Routes>
     </BrowserRouter>
+    // <Side />
   );
 }
 
