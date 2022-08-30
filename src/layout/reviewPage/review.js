@@ -1,13 +1,4 @@
-import {
-  Card,
-  CardHeader,
-  CardMedia,
-  CardContent,
-  Typography,
-  IconButton,
-  TextField,
-  Grid,
-} from "@mui/material";
+import { Card, CardHeader, CardMedia, IconButton, Grid } from "@mui/material";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 
 export default function Review() {

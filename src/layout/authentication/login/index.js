@@ -9,9 +9,8 @@ import {
   Avatar,
 } from "@mui/material";
 import CheckroomIcon from "@mui/icons-material/Checkroom";
-import { Link } from "react-router-dom";
 
-export default function Login() {
+export default function Login(props) {
   return (
     <Container maxWidth="xs">
       <Box
@@ -56,17 +55,19 @@ export default function Login() {
             }
             label="아이디, 비밀번호를 저장하겠습니까?"
           />
-          <Link to="/" style={{ textDecoration: "none" }}>
-            <Button variant="contained" value="login" fullWidth sx={{ mt: 1 }}>
-              로그인
-            </Button>
-          </Link>
+
+          <Button
+            variant="contained"
+            value="login"
+            fullWidth
+            sx={{ mt: 1 }}
+            onClick={() => {
+              props.clickLoginBtn();
+            }}
+          >
+            로그인
+          </Button>
         </Box>
-        {/* <Box sx={{ mt: 1 }}>
-          <Link to="/signup" variant="body2" underline="hover">
-            회원가입
-          </Link>
-        </Box> */}
       </Box>
     </Container>
   );

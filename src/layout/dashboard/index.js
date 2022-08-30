@@ -1,5 +1,4 @@
 import {
-  // Avatar,
   Button,
   Toolbar,
   AppBar,
@@ -7,21 +6,23 @@ import {
   Stack,
   Dialog,
 } from "@mui/material";
-// import CheckroomIcon from "@mui/icons-material/Checkroom";
 import Side from "./sidevarList";
 import Main from "./main";
-import axios from "axios";
-import { Link } from "react-router-dom";
-import Login from "../authentication/login";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { useState } from "react";
 import Review from "../reviewPage/review";
 import SignUp from "../authentication/sign-up/index";
-export default function Dashboard() {
-  const getAllUser = async () => {
-    const r = await axios.get("http://localhost:8080/user/all");
-    console.log(r);
-  };
+import Login from "../authentication/login";
+
+import { Link } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { useState } from "react";
+import axios from "axios";
+
+export default function Dashboard(props) {
+  // const getAllUser = async () => {
+  //   const r = await axios.get("http://localhost:8080/user/all");
+  //   console.log(r);
+  // };
+  //sx={{ flexGrow: 1 }}
 
   const [open, setOpen] = useState(false);
   const handelClickOpen = () => {
@@ -36,16 +37,18 @@ export default function Dashboard() {
       <AppBar position="absolute" padding="0" sx={{ bgcolor: "white" }}>
         <Toolbar>
           <Side />
-
-          <Typography color="primary" variant="h6" sx={{ flexGrow: 1 }}>
-            Dress
-          </Typography>
+          <Link to="/" style={{ textDecoration: "none", flexGrow: 1 }}>
+            <Typography color="primary" variant="h6">
+              home
+            </Typography>
+          </Link>
           <Stack direction="row" sapcing={2}>
             <Button disableRipple onClick={handelClickOpen}>
               로그인
             </Button>
+
             <Dialog open={open} onClose={handleClose}>
-              <Login />
+              <Login clickLoginBtn={() => handleClose()} />
             </Dialog>
 
             <Link to="signup" style={{ textDecoration: "none" }}>
