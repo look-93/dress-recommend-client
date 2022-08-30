@@ -6,13 +6,14 @@ import {
   Typography,
   IconButton,
   TextField,
+  Grid,
 } from '@mui/material';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import { Stack } from '@mui/system';
 
 export default function Review() {
   return (
-    <Stack spacing={6} direction="row" padding={6}>
+    <Grid display="flex" padding={6} sx={{ gap: 6 }}>
       <Card>
         <CardHeader title="id: " subheader="September 14, 2016" />
         <CardMedia
@@ -39,6 +40,6 @@ export default function Review() {
           <FavoriteBorderIcon />
         </IconButton>
       </Card>
-    </Stack>
+    </Grid>
   );
 }
