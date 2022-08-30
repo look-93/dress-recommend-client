@@ -6,18 +6,20 @@ import {
   Typography,
   Stack,
   Dialog,
-} from '@mui/material';
+} from "@mui/material";
 // import CheckroomIcon from "@mui/icons-material/Checkroom";
-import Side from './sidevarList';
-import Main from './main';
-import axios from 'axios';
-import { Link } from 'react-router-dom';
-import Login from '../authentication/login';
-import { useState } from 'react';
-
+import Side from "./sidevarList";
+import Main from "./main";
+import axios from "axios";
+import { Link } from "react-router-dom";
+import Login from "../authentication/login";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { useState } from "react";
+import Review from "../reviewPage/review";
+import SignUp from "../authentication/sign-up/index";
 export default function Dashboard() {
   const getAllUser = async () => {
-    const r = await axios.get('http://localhost:8080/user/all');
+    const r = await axios.get("http://localhost:8080/user/all");
     console.log(r);
   };
 
@@ -30,8 +32,8 @@ export default function Dashboard() {
   };
 
   return (
-    <>
-      <AppBar position="absolute" padding="0" sx={{ bgcolor: 'white' }}>
+    <BrowserRouter>
+      <AppBar position="absolute" padding="0" sx={{ bgcolor: "white" }}>
         <Toolbar>
           <Side />
 
@@ -46,14 +48,17 @@ export default function Dashboard() {
               <Login />
             </Dialog>
 
-            <Link to="signup" style={{ textDecoration: 'none' }}>
+            <Link to="signup" style={{ textDecoration: "none" }}>
               <Button disableRipple>회원가입</Button>
             </Link>
           </Stack>
         </Toolbar>
       </AppBar>
-
-      <Main />
-    </>
+      <Routes>
+        <Route path="/" element={<Main />}></Route>
+        <Route path="/review" element={<Review />}></Route>
+        <Route path="/signup" element={<SignUp />}></Route>
+      </Routes>
+    </BrowserRouter>
   );
 }

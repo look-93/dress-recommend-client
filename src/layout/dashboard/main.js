@@ -1,6 +1,6 @@
-import React from 'react';
+import React from "react";
 
-import { Box, Container, Card } from '@mui/material';
+import { Box, Container, Card } from "@mui/material";
 
 export default function Main() {
   return (
