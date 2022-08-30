@@ -21,7 +21,7 @@ export default function DialIcon() {
   return (
     <SpeedDial
       ariaLabel="Navigation speed dial"
-      sx={{ position: 'absolute', bottom: 16, right: 25 }}
+      sx={{ position: 'absolute' }} //, bottom: 16, right: 25
       icon={<SpeedDialIcon />}
       open={open}
       onOpen={handleOpen}

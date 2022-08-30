@@ -16,7 +16,7 @@ export default function Login() {
     <Container maxWidth="xs">
       <Box
         sx={{
-          marginTop: 8,
+          marginTop: 4,
           display: 'flex',
           flexDirection: 'column',
           alignItems: 'center',
@@ -28,7 +28,7 @@ export default function Login() {
         <Typography component="h1" variant="h5">
           로그인
         </Typography>
-        <Box component="form" noValidate sx={{ mt: 2 }}>
+        <Box component="form" noValidate sx={{ mt: 1, mb: 4 }}>
           <TextField
             margin="normal"
             required
@@ -62,11 +62,11 @@ export default function Login() {
             </Button>
           </Link>
         </Box>
-        <Box sx={{ mt: 1 }}>
+        {/* <Box sx={{ mt: 1 }}>
           <Link to="/signup" variant="body2" underline="hover">
             회원가입
           </Link>
-        </Box>
+        </Box> */}
       </Box>
     </Container>
   );
