@@ -55,7 +55,7 @@ export default function SignUp() {
     // console.log(userGender);
     // console.log(userPh);
 
-    const result = await axios.post("http://localhost:8080/user/signUp", {
+    const result = await axios.post("http://localhost:8000/user/signup", {
       uid: userId,
       upassword: userPwd,
       uname: userName,
