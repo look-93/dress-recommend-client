@@ -12,4 +12,6 @@ npx create-react-app unsplash
 axios
 npm install axios
 
-npm install react-router-dom --force
+npm install react-router-dom
+
+.
