@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 import {
   Box,
   Container,
@@ -8,7 +8,7 @@ import {
   styled,
   Stack,
   Typography,
-} from "@mui/material";
+} from '@mui/material';
 
 export default function Main() {
   return (
@@ -25,8 +25,8 @@ export default function Main() {
       </Stack>
       <Box
         sx={{
-          display: "flex",
-          justifyContent: "center",
+          display: 'flex',
+          justifyContent: 'center',
         }}
       >
         <Button size="large" variant="contained" sx={{ mt: 10 }}>

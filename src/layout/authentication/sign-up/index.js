@@ -5,37 +5,37 @@ import {
   Typography,
   MenuItem,
   Button,
-} from "@mui/material";
-import { useState } from "react";
-import axios from "axios";
+} from '@mui/material';
+import { useState } from 'react';
+import axios from 'axios';
 
 export default function SignUp() {
-  const [userId, setUserId] = useState("");
+  const [userId, setUserId] = useState('');
   const onUserIdHandler = (e) => {
     setUserId(e.target.value);
   };
 
-  const [userPwd, setUserPwd] = useState("");
+  const [userPwd, setUserPwd] = useState('');
   const onUserPwdHandler = (e) => {
     setUserPwd(e.target.value);
   };
   //이름 이메일 성별 주소
-  const [userName, setUserName] = useState("");
+  const [userName, setUserName] = useState('');
   const onUserNameHandler = (e) => {
     setUserName(e.target.value);
   };
 
-  const [userEmail, setUserEmail] = useState("");
+  const [userEmail, setUserEmail] = useState('');
   const onUserEmailHendeler = (e) => {
     setUserEmail(e.target.value);
   };
 
-  const [userGender, setUserGender] = useState("");
+  const [userGender, setUserGender] = useState('');
   const onGenderHandeler = (e) => {
     setUserGender(e.target.value);
   };
 
-  const [userPh, setUserPh] = useState("");
+  const [userPh, setUserPh] = useState('');
   const userPhHandler = (e) => {
     setUserPh(e.target.value);
   };
@@ -55,7 +55,7 @@ export default function SignUp() {
     // console.log(userGender);
     // console.log(userPh);
 
-    const result = await axios.post("http://localhost:8000/user/signup", {
+    const result = await axios.post('http://127.0.0.1:8000/user/signup/', {
       uid: userId,
       upassword: userPwd,
       uname: userName,
@@ -71,9 +71,9 @@ export default function SignUp() {
       <Box
         sx={{
           marginTop: 15,
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
         }}
       >
         <Typography component="h1" variant="h5" sx={{ mb: 3 }}>
@@ -115,8 +115,8 @@ export default function SignUp() {
             value={userGender}
             onChange={onGenderHandeler}
           >
-            <MenuItem value={"F"}>여자</MenuItem>
-            <MenuItem value={"M"}>남자</MenuItem>
+            <MenuItem value={'F'}>여자</MenuItem>
+            <MenuItem value={'M'}>남자</MenuItem>
           </TextField>
 
           <TextField
