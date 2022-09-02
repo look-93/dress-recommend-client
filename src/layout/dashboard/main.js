@@ -10,6 +10,8 @@ import {
   Typography,
 } from '@mui/material';
 
+import { Link } from 'react-router-dom';
+
 export default function Main() {
   return (
     <Box>
@@ -29,9 +31,11 @@ export default function Main() {
           justifyContent: 'center',
         }}
       >
-        <Button size="large" variant="contained" sx={{ mt: 10 }}>
-          시작하기
-        </Button>
+        <Link to="surver" style={{ textDecoration: 'none' }}>
+          <Button size="large" variant="contained" sx={{ mt: 10 }}>
+            시작하기
+          </Button>
+        </Link>
       </Box>
     </Box>
   );

@@ -7,8 +7,9 @@ import {
   Checkbox,
   Button,
   Avatar,
-} from "@mui/material";
-import CheckroomIcon from "@mui/icons-material/Checkroom";
+} from '@mui/material';
+import CheckroomIcon from '@mui/icons-material/Checkroom';
+import ArrowRightAltIcon from '@mui/icons-material/ArrowRightAlt';
 
 export default function Login(props) {
   return (
@@ -16,12 +17,12 @@ export default function Login(props) {
       <Box
         sx={{
           marginTop: 4,
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
         }}
       >
-        <Avatar sx={{ bgcolor: "#ef6694", mb: 1 }}>
+        <Avatar sx={{ bgcolor: '#ef6694', mb: 1 }}>
           <CheckroomIcon />
         </Avatar>
         <Typography component="h1" variant="h5">

@@ -4,6 +4,7 @@ import {
   ListItemText,
   ListSubheader,
 } from '@mui/material';
+import { Box } from '@mui/system';
 import { Link } from 'react-router-dom';
 
 export default function ListItem() {
@@ -16,7 +17,9 @@ export default function ListItem() {
         </Link>
       </ListItemButton>
       <ListItemButton>
-        <ListItemText primary="마이페이지" />
+        <Link to="/mypage" style={{ textDecoration: 'none' }}>
+          <ListItemText primary="마이페이지" />
+        </Link>
       </ListItemButton>
     </List>
   );

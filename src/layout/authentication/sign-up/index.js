@@ -5,6 +5,7 @@ import {
   Typography,
   MenuItem,
   Button,
+  Grid,
 } from '@mui/material';
 import { useState } from 'react';
 import axios from 'axios';
@@ -66,6 +67,11 @@ export default function SignUp() {
     console.log(result);
   };
 
+  const [click, setClick] = useState(false);
+  const clicked = () => {
+    setClick(true);
+  };
+
   return (
     <Container maxWidth="xs">
       <Box
@@ -76,7 +82,7 @@ export default function SignUp() {
           alignItems: 'center',
         }}
       >
-        <Typography component="h1" variant="h5" sx={{ mb: 3 }}>
+        <Typography component="h1" variant="h4" sx={{ mb: 3 }}>
           회원가입
         </Typography>
         <Box>
@@ -118,6 +124,27 @@ export default function SignUp() {
             <MenuItem value={'F'}>여자</MenuItem>
             <MenuItem value={'M'}>남자</MenuItem>
           </TextField>
+
+          {/* <Grid container spacing={2}>
+            <Grid item xs={12} sm={6}>
+              <TextField
+                autoComplete="given-name"
+                required
+                fullWidth
+                label="이메일"
+                autoFocus
+              />
+            </Grid>
+            <Grid item xs={12} sm={6}>
+              <TextField required fullWidth label="선택" select>
+                <MenuItem value={'naver'}>naver.com</MenuItem>
+                <MenuItem value={'daum'}>daum.net</MenuItem>
+                <MenuItem value={'daum'} aria-selected>
+                  직접입력
+                </MenuItem>
+              </TextField>
+            </Grid>
+          </Grid> */}
 
           <TextField
             margin="normal"

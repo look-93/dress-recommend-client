@@ -8,9 +8,11 @@ import {
 } from '@mui/material';
 import Side from './sidevarList';
 import Main from './main';
-import Review from '../reviewPage/review';
+import Review from '../reviewPage/index';
 import SignUp from '../authentication/sign-up/index';
 import Login from '../authentication/login';
+import Survey from '../../survey';
+import Mypage from '../mypage';
 
 import { Link } from 'react-router-dom';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
@@ -54,6 +56,10 @@ export default function Dashboard(props) {
             <Link to="signup" style={{ textDecoration: 'none' }}>
               <Button disableRipple>회원가입</Button>
             </Link>
+
+            <Button disableRipple sx={{ color: 'text.secondary' }}>
+              로그아웃
+            </Button>
           </Stack>
         </Toolbar>
       </AppBar>
@@ -61,6 +67,8 @@ export default function Dashboard(props) {
         <Route path="/" element={<Main />}></Route>
         <Route path="/review" element={<Review />}></Route>
         <Route path="/signup" element={<SignUp />}></Route>
+        <Route path="/surver" element={<Survey />}></Route>
+        <Route path="/mypage" element={<Mypage />}></Route>
       </Routes>
     </BrowserRouter>
   );

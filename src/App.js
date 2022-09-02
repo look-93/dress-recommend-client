@@ -1,7 +1,6 @@
 import React from 'react';
 import Dashboard from './layout/dashboard/index';
-import Survey from './survey/surveyPage';
-import Review from './layout/reviewPage/review';
+import Survey from './survey/index';
 
 function App() {
   return (

@@ -8,34 +8,34 @@ import {
   IconButton,
   Grid,
   Stack,
-} from "@mui/material";
-import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
+} from '@mui/material';
+import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 
 export default function Review() {
   const datas = [
     {
-      title: "testUser",
-      subTitle: "September 14, 2016",
+      title: 'testUser',
+      subTitle: 'September 14, 2016',
       like: 10,
-      src: "https://source.unsplash.com/random",
+      src: 'https://source.unsplash.com/random',
     },
     {
-      title: "testUser",
-      subTitle: "September 15, 2016",
+      title: 'testUser',
+      subTitle: 'September 15, 2016',
       like: 8,
-      src: "https://source.unsplash.com/random",
+      src: 'https://source.unsplash.com/random',
     },
     {
-      title: "testUser",
-      subTitle: "September 24, 2016",
+      title: 'testUser',
+      subTitle: 'September 24, 2016',
       like: 15,
-      src: "https://source.unsplash.com/random",
+      src: 'https://source.unsplash.com/random',
     },
     {
-      title: "testUser",
-      subTitle: "September 24, 2016",
+      title: 'testUser',
+      subTitle: 'September 24, 2016',
       like: 15,
-      src: "https://source.unsplash.com/random",
+      src: 'https://source.unsplash.com/random',
     },
   ];
   return (
@@ -45,9 +45,9 @@ export default function Review() {
           <Grid item key={index} xs={12} sm={6} md={4}>
             <Card
               sx={{
-                height: "100%",
-                display: "flex",
-                flexDirection: "column",
+                height: '100%',
+                display: 'flex',
+                flexDirection: 'column',
               }}
             >
               <CardHeader title={data.title} subheader={data.subTitle} />
