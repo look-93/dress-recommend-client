@@ -5,25 +5,25 @@ import {
   Typography,
   Stack,
   Dialog,
-} from '@mui/material';
-import Side from './sidevarList';
-import Main from './main';
-import Review from '../reviewPage/index';
-import SignUp from '../authentication/sign-up/index';
-import Login from '../authentication/login';
-import Survey from '../../survey';
-import Mypage from '../mypage';
+} from "@mui/material";
+import Side from "./sidevarList";
+import Main from "./main";
+import Review from "../reviewPage/index";
+import SignUp from "../authentication/sign-up/index";
+import Login from "../authentication/login";
+import Survey from "../../survey";
+import Mypage from "../mypage";
 
-import { Link } from 'react-router-dom';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import { useState } from 'react';
-import axios from 'axios';
+import { Link } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { useState } from "react";
+import axios from "axios";
 
 export default function Dashboard(props) {
-  // const getAllUser = async () => {
-  //   const r = await axios.get("http://localhost:8080/user/all");
-  //   console.log(r);
-  // };
+  const getAllUser = async () => {
+    const r = await axios.get("http://localhost:8080/user/all");
+    console.log(r);
+  };
   //sx={{ flexGrow: 1 }}
 
   const [open, setOpen] = useState(false);
@@ -36,10 +36,10 @@ export default function Dashboard(props) {
 
   return (
     <BrowserRouter>
-      <AppBar position="absolute" padding="0" sx={{ bgcolor: 'white' }}>
+      <AppBar position="absolute" padding="0" sx={{ bgcolor: "white" }}>
         <Toolbar>
           <Side />
-          <Link to="/" style={{ textDecoration: 'none', flexGrow: 1 }}>
+          <Link to="/" style={{ textDecoration: "none", flexGrow: 1 }}>
             <Typography color="primary" variant="h6">
               home
             </Typography>
@@ -53,11 +53,7 @@ export default function Dashboard(props) {
               <Login clickLoginBtn={() => handleClose()} />
             </Dialog>
 
-            <Link to="signup" style={{ textDecoration: 'none' }}>
-              <Button disableRipple>회원가입</Button>
-            </Link>
-
-            <Button disableRipple sx={{ color: 'text.secondary' }}>
+            <Button disableRipple sx={{ color: "text.secondary" }}>
               로그아웃
             </Button>
           </Stack>

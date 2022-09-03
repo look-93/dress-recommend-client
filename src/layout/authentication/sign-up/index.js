@@ -6,57 +6,85 @@ import {
   MenuItem,
   Button,
   Grid,
-} from '@mui/material';
-import { useState } from 'react';
-import axios from 'axios';
+} from "@mui/material";
+import { useState } from "react";
+import axios from "axios";
+import { Link } from "react-router-dom";
 
 export default function SignUp() {
-  const [userId, setUserId] = useState('');
+  const [userId, setUserId] = useState("");
   const onUserIdHandler = (e) => {
     setUserId(e.target.value);
   };
 
-  const [userPwd, setUserPwd] = useState('');
+  const [userPwd, setUserPwd] = useState("");
   const onUserPwdHandler = (e) => {
     setUserPwd(e.target.value);
   };
   //이름 이메일 성별 주소
-  const [userName, setUserName] = useState('');
+  const [userName, setUserName] = useState("");
   const onUserNameHandler = (e) => {
     setUserName(e.target.value);
   };
 
-  const [userEmail, setUserEmail] = useState('');
+  const [userEmail, setUserEmail] = useState("");
   const onUserEmailHendeler = (e) => {
     setUserEmail(e.target.value);
   };
 
-  const [userGender, setUserGender] = useState('');
+  const [userGender, setUserGender] = useState("");
   const onGenderHandeler = (e) => {
     setUserGender(e.target.value);
   };
 
-  const [userPh, setUserPh] = useState('');
+  const [userPh, setUserPh] = useState("");
   const userPhHandler = (e) => {
     setUserPh(e.target.value);
   };
 
-  // private String uId;
-  // private String uPassword;
-  // private String uName;
-  // private String uGender;
-  // private String uEmail;
-  // private String uPhon;
-
   const registe = async () => {
-    // console.log(userId);
-    // console.log(userPwd);
-    // console.log(userName);
-    // console.log(userEmail);
-    // console.log(userGender);
-    // console.log(userPh);
+    //회원정보 유효성 체크
+    if (userId === "") {
+      alert("아이디를 입력해주세요");
+      return;
+    } else if (userId.length < 4) {
+      alert("아이디는 최소 4자 이상 적어주세요");
+      return;
+    }
 
-    const result = await axios.post('http://127.0.0.1:8000/user/signup/', {
+    if (userPwd === "") {
+      alert("비밀번호를 입력해주세요.");
+      return;
+    } else if (userPwd.length < 8) {
+      alert("비밀번호는 최소 8자 이상 적어주세요.");
+      return;
+    }
+
+    if (userName === "") {
+      alert("이름을 입력해주세요");
+      return;
+    }
+
+    if (userGender === "") {
+      alert("성별을 선택해 주세요.");
+      return;
+    }
+
+    if (!userEmail.includes("@") || !userEmail.includes(".")) {
+      alert("이메일을 확인해 주세요.");
+      return;
+    }
+
+    if (userPh === "") {
+      alert("휴대폰 번호를 확인해 주세요.");
+      return;
+    } else if (isNaN(userPh * 1)) {
+      alert("숫자를 입력하세요");
+      return;
+    }
+    //TODO 아이디중복검사 API 생성 후 확인
+
+    const result = await axios.post("http://127.0.0.1:8080/user/signUp/", {
       uid: userId,
       upassword: userPwd,
       uname: userName,
@@ -67,19 +95,14 @@ export default function SignUp() {
     console.log(result);
   };
 
-  const [click, setClick] = useState(false);
-  const clicked = () => {
-    setClick(true);
-  };
-
   return (
     <Container maxWidth="xs">
       <Box
         sx={{
           marginTop: 15,
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
         }}
       >
         <Typography component="h1" variant="h4" sx={{ mb: 3 }}>
@@ -121,8 +144,8 @@ export default function SignUp() {
             value={userGender}
             onChange={onGenderHandeler}
           >
-            <MenuItem value={'F'}>여자</MenuItem>
-            <MenuItem value={'M'}>남자</MenuItem>
+            <MenuItem value={"F"}>여자</MenuItem>
+            <MenuItem value={"M"}>남자</MenuItem>
           </TextField>
 
           {/* <Grid container spacing={2}>
@@ -162,16 +185,18 @@ export default function SignUp() {
             value={userPh}
             onChange={userPhHandler}
           />
-          <Button
-            variant="contained"
-            fullWidth
-            sx={{ mt: 1 }}
-            size="large"
-            disableRipple
-            onClick={registe}
-          >
-            가입하기
-          </Button>
+          <Link to="/" style={{ textDecoration: "none" }}>
+            <Button
+              variant="contained"
+              fullWidth
+              sx={{ mt: 1 }}
+              size="large"
+              disableRipple
+              onClick={registe}
+            >
+              가입하기
+            </Button>
+          </Link>
         </Box>
       </Box>
     </Container>
