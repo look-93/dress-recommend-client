@@ -1,4 +1,4 @@
-import * as React from 'react';
+import * as React from "react";
 import {
   Avatar,
   List,
@@ -6,17 +6,16 @@ import {
   ListItemText,
   ListItemAvatar,
   Divider,
-  Container,
   Typography,
   Grid,
   Box,
-} from '@mui/material';
-import AssignmentIndIcon from '@mui/icons-material/AssignmentInd';
-import { useState, useRef } from 'react';
+} from "@mui/material";
+import AssignmentIndIcon from "@mui/icons-material/AssignmentInd";
+import { useState, useRef } from "react";
 
 export default function Mypage() {
   const [Image, setImage] = useState(
-    'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png'
+    "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png"
   );
   const fileInput = useRef(null);
 
@@ -25,7 +24,7 @@ export default function Mypage() {
     } else {
       //업로드 취소할 시
       setImage(
-        'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png'
+        "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png"
       );
       return;
     }
@@ -48,12 +47,12 @@ export default function Mypage() {
       >
         마이페이지
       </Typography>
-      <Box sx={{ display: 'flex' }} justifyContent="center">
+      <Box sx={{ display: "flex" }} justifyContent="center">
         <Grid container maxWidth="sm">
           <Grid item xs={6} sx={{ mt: 5 }}>
             <input
               type="file"
-              style={{ display: 'none' }}
+              style={{ display: "none" }}
               accept="image/jpg,impge/png,image/jpeg"
               name="profile_img"
               onChange={onChange}
@@ -62,11 +61,11 @@ export default function Mypage() {
             <Avatar
               alt="Profile"
               src={Image}
-              sx={{ height: '100px', width: '100px', mt: 2 }}
+              sx={{ height: "100px", width: "100px", mt: 2 }}
               onClick={() => {
                 fileInput.current.click();
               }}
-              style={{ cursor: 'pointer' }}
+              style={{ cursor: "pointer" }}
             />
           </Grid>
 

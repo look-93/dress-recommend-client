@@ -44,6 +44,10 @@ export default function Login(props) {
       //쿠키는 꺼도 존재(비휘발성 - 스토리지에 저장), 세션은 브라우저 종료시 삭제(휘발성- 메모리에저장)
       //세션에 회원정보 저장
       alert(result.data.uname + "님 환영합니다!");
+      sessionStorage.setItem("userPk", result.data.upk);
+      console.log(result);
+      props.clickLoginBtn();
+      props.LoginSuccess();
     } catch (e) {
       console.log(e);
       alert("아이디/비밀번호를 확인하세요!");
@@ -110,9 +114,6 @@ export default function Login(props) {
           >
             로그인
           </Button>
-          <Link to="signup" style={{ textDecoration: "none" }}>
-            <Button disableRipple>회원가입</Button>
-          </Link>
         </Box>
       </Box>
     </Container>

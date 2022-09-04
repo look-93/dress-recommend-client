@@ -9,9 +9,11 @@ import {
 } from "@mui/material";
 import { useState } from "react";
 import axios from "axios";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 export default function SignUp() {
+  const navigate = useNavigate();
+
   const [userId, setUserId] = useState("");
   const onUserIdHandler = (e) => {
     setUserId(e.target.value);
@@ -92,7 +94,10 @@ export default function SignUp() {
       uemail: userEmail,
       uphon: userPh,
     });
-    console.log(result);
+    //console.log(result);
+    alert("가입을 환영합니다!");
+
+    navigate("/");
   };
 
   return (
@@ -185,18 +190,17 @@ export default function SignUp() {
             value={userPh}
             onChange={userPhHandler}
           />
-          <Link to="/" style={{ textDecoration: "none" }}>
-            <Button
-              variant="contained"
-              fullWidth
-              sx={{ mt: 1 }}
-              size="large"
-              disableRipple
-              onClick={registe}
-            >
-              가입하기
-            </Button>
-          </Link>
+
+          <Button
+            variant="contained"
+            fullWidth
+            sx={{ mt: 1 }}
+            size="large"
+            disableRipple
+            onClick={registe}
+          >
+            가입하기
+          </Button>
         </Box>
       </Box>
     </Container>

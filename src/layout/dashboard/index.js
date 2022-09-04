@@ -17,21 +17,60 @@ import Mypage from "../mypage";
 import { Link } from "react-router-dom";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { useState } from "react";
-import axios from "axios";
+
+// const getAllUser = async () => {
+//   const r = await axios.get("http://localhost:8080/user/all");
+//   console.log(r);
+// };
 
 export default function Dashboard(props) {
-  const getAllUser = async () => {
-    const r = await axios.get("http://localhost:8080/user/all");
-    console.log(r);
-  };
-  //sx={{ flexGrow: 1 }}
-
   const [open, setOpen] = useState(false);
   const handelClickOpen = () => {
     setOpen(true);
   };
   const handleClose = () => {
     setOpen(false);
+  };
+
+  const [isLogin, setIsLogin] = useState(false);
+  const handelIsLogin = () => {
+    setIsLogin(true);
+  };
+
+  const LoginMenu = () => {
+    if (isLogin) {
+      return (
+        <>
+          <Typography sx={{ color: "text.secondary" }}>로그인</Typography>
+          <Button
+            disableRipple
+            sx={{ color: "text.secondary" }}
+            onClick={() => {
+              setIsLogin(false);
+            }}
+          >
+            로그아웃
+          </Button>
+        </>
+      );
+    } else {
+      return (
+        <>
+          <Button disableRipple onClick={handelClickOpen}>
+            로그인
+          </Button>
+          <Dialog open={open} onClose={handleClose}>
+            <Login
+              clickLoginBtn={() => handleClose()}
+              LoginSuccess={() => handelIsLogin()}
+            />
+          </Dialog>
+          <Link to="signup" style={{ textDecoration: "none" }}>
+            <Button disableRipple>회원가입</Button>
+          </Link>
+        </>
+      );
+    }
   };
 
   return (
@@ -45,17 +84,7 @@ export default function Dashboard(props) {
             </Typography>
           </Link>
           <Stack direction="row" sapcing={2}>
-            <Button disableRipple onClick={handelClickOpen}>
-              로그인
-            </Button>
-
-            <Dialog open={open} onClose={handleClose}>
-              <Login clickLoginBtn={() => handleClose()} />
-            </Dialog>
-
-            <Button disableRipple sx={{ color: "text.secondary" }}>
-              로그아웃
-            </Button>
+            <LoginMenu />
           </Stack>
         </Toolbar>
       </AppBar>
