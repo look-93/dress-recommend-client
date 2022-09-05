@@ -7,9 +7,12 @@ import {
   CardMedia,
   IconButton,
   Grid,
-  Stack,
+  Box,
+  SwipeableDrawer,
 } from '@mui/material';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
+import { useState } from 'react';
+import ReviewDetail from './reviewDetail';
 
 export default function Review() {
   const datas = [
@@ -38,6 +41,13 @@ export default function Review() {
       src: 'https://source.unsplash.com/random',
     },
   ];
+  const [open, setOpen] = useState(false);
+  const onClickHandler = () => {
+    setOpen(true);
+  };
+  const onClickCloseHandler = () => {
+    setOpen(false);
+  };
   return (
     <Container sx={{ py: 15 }} maxWidth="md">
       <Grid container spacing={4}>
@@ -63,9 +73,22 @@ export default function Review() {
                   <FavoriteBorderIcon />
                 </IconButton>
                 <CardActions>
-                  <Button sx={{ flexGrow: 1 }} size="small">
+                  <Button
+                    sx={{ flexGrow: 1 }}
+                    size="small"
+                    onClick={onClickHandler}
+                  >
                     View
                   </Button>
+                  <Box sx={{ width: 'auto' }} role="presentation">
+                    <SwipeableDrawer
+                      anchor="bottom"
+                      open={open}
+                      onClose={onClickCloseHandler}
+                    >
+                      <ReviewDetail />
+                    </SwipeableDrawer>
+                  </Box>
                 </CardActions>
               </Grid>
             </Card>

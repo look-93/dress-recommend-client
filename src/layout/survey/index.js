@@ -7,10 +7,23 @@ import {
   FormControlLabel,
   Radio,
   Divider,
+  Button,
+  Stack,
+  Dialog,
 } from '@mui/material';
+import { useState } from 'react';
+import RegistDtail from '../reviewPage/registDetail';
+
 //import { Link } from 'react-scroll';
 
 export default function Survey() {
+  const [open, setOpen] = useState(false);
+  const handelClickOpen = () => {
+    setOpen(true);
+  };
+  const handelClickClose = () => {
+    setOpen(false);
+  };
   return (
     <Box sx={{ pt: 6, pb: 6 }}>
       <Container maxWidth="lx" sx={{ bgcolor: '#bdbdbd', height: 200 }}>
@@ -95,6 +108,19 @@ export default function Survey() {
         </Box>
         <Divider />
       </Container>
+      <Stack alignItems="center">
+        <Button
+          size="large"
+          variant="contained"
+          sx={{ mt: 10 }}
+          onClick={handelClickOpen}
+        >
+          제출하기
+        </Button>
+        <Dialog open={open} onClose={handelClickClose}>
+          <RegistDtail />
+        </Dialog>
+      </Stack>
     </Box>
   );
 }
