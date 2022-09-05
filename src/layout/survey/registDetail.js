@@ -44,14 +44,6 @@ export default function RegistDtail() {
               fullWidth
               variant="standard"
             />
-            {/* <TextField
-              id="standard-multiline-static"
-              label="한줄평"
-              multiline
-              rows={2}
-              variant="filled"
-              fullWidth
-            /> */}
             <Stack alignItems="center">
               <Button size="small">확인</Button>
             </Stack>

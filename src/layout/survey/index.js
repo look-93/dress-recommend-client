@@ -2,7 +2,6 @@ import {
   Container,
   Box,
   Typography,
-  Paper,
   RadioGroup,
   FormControlLabel,
   Radio,
@@ -12,7 +11,7 @@ import {
   Dialog,
 } from '@mui/material';
 import { useState } from 'react';
-import RegistDtail from '../reviewPage/registDetail';
+import RegistDtail from './registDetail';
 
 //import { Link } from 'react-scroll';
 
