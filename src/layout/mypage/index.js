@@ -11,9 +11,30 @@ import {
   Box,
 } from "@mui/material";
 import AssignmentIndIcon from "@mui/icons-material/AssignmentInd";
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
+import axios from "axios";
 
 export default function Mypage() {
+  const getMyInfo = async () => {
+    const upk = sessionStorage.getItem("userPk");
+    const result = await axios.get("http://localhost:8080/user/" + upk);
+    console.log(result);
+    setUserInfo({
+      uId: result.data.uid,
+      uName: result.data.uname,
+      uPh: result.data.uphon,
+      uEmail: result.data.uemail,
+      uGender: result.data.ugender === "F" ? "여자" : "남자",
+    });
+
+    console.log(userInfo);
+  };
+  useEffect(() => {
+    getMyInfo();
+  }, []);
+
+  const [userInfo, setUserInfo] = useState({});
+
   const [Image, setImage] = useState(
     "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png"
   );
@@ -77,7 +98,7 @@ export default function Mypage() {
                     <AssignmentIndIcon />
                   </Avatar>
                 </ListItemAvatar>
-                <ListItemText primary="이름" secondary="홍길동" />
+                <ListItemText primary="이름" secondary={userInfo.uName} />
               </ListItem>
               <Divider variant="inset" component="li" />
               <ListItem>
@@ -86,10 +107,7 @@ export default function Mypage() {
                     <AssignmentIndIcon />
                   </Avatar>
                 </ListItemAvatar>
-                <ListItemText
-                  primary="회원 아이디"
-                  secondary="kosmo@django.com"
-                />
+                <ListItemText primary="회원 아이디" secondary={userInfo.uId} />
               </ListItem>
               <Divider variant="inset" component="li" />
               <ListItem>
@@ -98,7 +116,7 @@ export default function Mypage() {
                     <AssignmentIndIcon />
                   </Avatar>
                 </ListItemAvatar>
-                <ListItemText primary="성별" secondary="남성" />
+                <ListItemText primary="성별" secondary={userInfo.uGender} />
               </ListItem>
             </List>
           </Grid>

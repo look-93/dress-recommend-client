@@ -7,13 +7,13 @@ import {
   TextField,
   Stack,
   Button,
-} from '@mui/material';
-import ReviewMessage from './reviewMessage';
+} from "@mui/material";
+import ReviewMessage from "./reviewMessage";
 
 export default function ReviewDetail() {
   return (
     <Container maxWidth="md" component="main">
-      <Grid container spacing={2} columns={16}>
+      <Grid container spacing={2} columns={16} sx={{ margin: 5 }}>
         <Grid item xs={8}>
           <Card sx={{ width: 330 }}>
             <CardMedia

@@ -9,36 +9,36 @@ import {
   Grid,
   Box,
   SwipeableDrawer,
-} from '@mui/material';
-import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
-import { useState } from 'react';
-import ReviewDetail from './reviewDetail';
+} from "@mui/material";
+import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
+import { useState } from "react";
+import ReviewDetail from "./reviewDetail";
 
 export default function Review() {
   const datas = [
     {
-      title: 'testUser',
-      subTitle: 'September 14, 2016',
+      title: "testUser",
+      subTitle: "September 14, 2016",
       like: 10,
-      src: 'https://source.unsplash.com/random',
+      src: "https://source.unsplash.com/random",
     },
     {
-      title: 'testUser',
-      subTitle: 'September 15, 2016',
+      title: "testUser",
+      subTitle: "September 15, 2016",
       like: 8,
-      src: 'https://source.unsplash.com/random',
+      src: "https://source.unsplash.com/random",
     },
     {
-      title: 'testUser',
-      subTitle: 'September 24, 2016',
+      title: "testUser",
+      subTitle: "September 24, 2016",
       like: 15,
-      src: 'https://source.unsplash.com/random',
+      src: "https://source.unsplash.com/random",
     },
     {
-      title: 'testUser',
-      subTitle: 'September 24, 2016',
+      title: "testUser",
+      subTitle: "September 24, 2016",
       like: 15,
-      src: 'https://source.unsplash.com/random',
+      src: "https://source.unsplash.com/random",
     },
   ];
   const [open, setOpen] = useState(false);
@@ -55,9 +55,9 @@ export default function Review() {
           <Grid item key={index} xs={12} sm={6} md={4}>
             <Card
               sx={{
-                height: '100%',
-                display: 'flex',
-                flexDirection: 'column',
+                height: "100%",
+                display: "flex",
+                flexDirection: "column",
               }}
             >
               <CardHeader title={data.title} subheader={data.subTitle} />
@@ -80,7 +80,7 @@ export default function Review() {
                   >
                     View
                   </Button>
-                  <Box sx={{ width: 'auto' }} role="presentation">
+                  <Box sx={{ width: "auto" }} role="presentation">
                     <SwipeableDrawer
                       anchor="bottom"
                       open={open}
