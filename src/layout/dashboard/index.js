@@ -5,18 +5,18 @@ import {
   Typography,
   Stack,
   Dialog,
-} from "@mui/material";
-import Side from "./sidevarList";
-import Main from "./main";
-import Review from "../reviewPage/index";
-import SignUp from "../authentication/sign-up/index";
-import Login from "../authentication/login";
-import Survey from "../../survey";
-import Mypage from "../mypage";
+} from '@mui/material';
+import Side from './sidevarList';
+import Main from './main';
+import Review from '../reviewPage/index';
+import SignUp from '../authentication/sign-up/index';
+import Login from '../authentication/login';
+import Survey from '../survey';
+import Mypage from '../mypage';
 
-import { Link } from "react-router-dom";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { useState } from "react";
+import { Link } from 'react-router-dom';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { useState } from 'react';
 
 // const getAllUser = async () => {
 //   const r = await axios.get("http://localhost:8080/user/all");
@@ -41,10 +41,10 @@ export default function Dashboard(props) {
     if (isLogin) {
       return (
         <>
-          <Typography sx={{ color: "text.secondary" }}>로그인</Typography>
+          <Typography sx={{ color: 'text.secondary' }}>님</Typography>
           <Button
             disableRipple
-            sx={{ color: "text.secondary" }}
+            sx={{ color: 'text.secondary' }}
             onClick={() => {
               setIsLogin(false);
             }}
@@ -65,7 +65,7 @@ export default function Dashboard(props) {
               LoginSuccess={() => handelIsLogin()}
             />
           </Dialog>
-          <Link to="signup" style={{ textDecoration: "none" }}>
+          <Link to="signup" style={{ textDecoration: 'none' }}>
             <Button disableRipple>회원가입</Button>
           </Link>
         </>
@@ -75,10 +75,10 @@ export default function Dashboard(props) {
 
   return (
     <BrowserRouter>
-      <AppBar position="absolute" padding="0" sx={{ bgcolor: "white" }}>
+      <AppBar position="absolute" padding="0" sx={{ bgcolor: 'white' }}>
         <Toolbar>
           <Side />
-          <Link to="/" style={{ textDecoration: "none", flexGrow: 1 }}>
+          <Link to="/" style={{ textDecoration: 'none', flexGrow: 1 }}>
             <Typography color="primary" variant="h6">
               home
             </Typography>

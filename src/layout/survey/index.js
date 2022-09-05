@@ -7,13 +7,13 @@ import {
   FormControlLabel,
   Radio,
   Divider,
-} from "@mui/material";
+} from '@mui/material';
 //import { Link } from 'react-scroll';
 
 export default function Survey() {
   return (
     <Box sx={{ pt: 6, pb: 6 }}>
-      <Container maxWidth="lx" sx={{ bgcolor: "#bdbdbd", height: 200 }}>
+      <Container maxWidth="lx" sx={{ bgcolor: '#bdbdbd', height: 200 }}>
         <Typography variant="h4" textAlign="center" sx={{ p: 3 }} gutterBottom>
           무료 성격유형검사
         </Typography>
@@ -30,7 +30,7 @@ export default function Survey() {
             질문 1
           </Typography>
 
-          <RadioGroup row sx={{ justifyContent: "center", my: 5 }}>
+          <RadioGroup row sx={{ justifyContent: 'center', my: 5 }}>
             <FormControlLabel
               value="바지"
               control={<Radio color="success" size="large" />}
@@ -50,7 +50,7 @@ export default function Survey() {
           <Typography variant="h5" align="center">
             질문 2
           </Typography>
-          <RadioGroup row sx={{ justifyContent: "center", my: 5 }}>
+          <RadioGroup row sx={{ justifyContent: 'center', my: 5 }}>
             <FormControlLabel
               value="반바지"
               control={<Radio color="success" size="large" />}
@@ -75,7 +75,7 @@ export default function Survey() {
           <Typography variant="h5" align="center">
             질문 3
           </Typography>
-          <RadioGroup row sx={{ justifyContent: "center", my: 5 }}>
+          <RadioGroup row sx={{ justifyContent: 'center', my: 5 }}>
             <FormControlLabel
               value="반바지"
               control={<Radio color="success" size="large" />}
