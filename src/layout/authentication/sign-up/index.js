@@ -84,7 +84,16 @@ export default function SignUp() {
       alert("숫자를 입력하세요");
       return;
     }
+
     //TODO 아이디중복검사 API 생성 후 확인
+    const idResult = await axios.get(
+      "http://127.0.0.1:8080/user/idcheck/" + userId
+    );
+    //console.log(idResult);
+    if (idResult.data.uid) {
+      alert("중복된 아이디입니다");
+      return;
+    }
 
     const result = await axios.post("http://127.0.0.1:8080/user/signUp/", {
       uid: userId,

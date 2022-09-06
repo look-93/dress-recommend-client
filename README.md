@@ -14,4 +14,10 @@ npm install axios
 
 npm install react-router-dom
 
-.
+create table dress.review(
+r_pk int(11) not null AUTO_INCREMENT primary key,
+img_url varchar(200) not null,
+create_date datetime not null,
+u_pk int(11) not null,
+constraint fk_user_review foreign key(u_pk) references dress.user(u_pk)
+);
