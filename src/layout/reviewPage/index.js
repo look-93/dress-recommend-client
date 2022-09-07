@@ -1,3 +1,4 @@
+import React, { useEffect, useState } from "react";
 import {
   Container,
   Button,
@@ -9,38 +10,27 @@ import {
   Grid,
   Box,
   SwipeableDrawer,
+  Typography,
 } from "@mui/material";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
-import { useState } from "react";
 import ReviewDetail from "./reviewDetail";
+import axios from "axios";
 
 export default function Review() {
-  const datas = [
-    {
-      title: "testUser",
-      subTitle: "September 14, 2016",
-      like: 10,
-      src: "https://source.unsplash.com/random",
-    },
-    {
-      title: "testUser",
-      subTitle: "September 15, 2016",
-      like: 8,
-      src: "https://source.unsplash.com/random",
-    },
-    {
-      title: "testUser",
-      subTitle: "September 24, 2016",
-      like: 15,
-      src: "https://source.unsplash.com/random",
-    },
-    {
-      title: "testUser",
-      subTitle: "September 24, 2016",
-      like: 15,
-      src: "https://source.unsplash.com/random",
-    },
-  ];
+  const [datas, setDatas] = useState([]);
+
+  const allReview = async () => {
+    let results = await axios.get("http://localhost:8080/review/all/");
+    //console.log(results);
+    setDatas(results.data);
+  };
+  useEffect(() => {
+    allReview();
+  }, []);
+
+  //선택된 pk를 담기위한 useState
+  const [selectedPk, setSelectedPk] = useState(0);
+
   const [open, setOpen] = useState(false);
   const onClickHandler = () => {
     setOpen(true);
@@ -60,13 +50,16 @@ export default function Review() {
                 flexDirection: "column",
               }}
             >
-              <CardHeader title={data.title} subheader={data.subTitle} />
+              <CardHeader title={data.uid} subheader={data.createDate} />
               <CardMedia
                 component="img"
                 height="300"
-                image="https://source.unsplash.com/random"
+                image={data.imgUrl}
                 alt="unsplash image"
               />
+              <Typography autoFocus variant="body2">
+                {data.content}
+              </Typography>
 
               <Grid item>
                 <IconButton>
@@ -76,24 +69,28 @@ export default function Review() {
                   <Button
                     sx={{ flexGrow: 1 }}
                     size="small"
-                    onClick={onClickHandler}
+                    onClick={() => {
+                      onClickHandler();
+                      setSelectedPk(data.rpk);
+                    }}
                   >
                     View
                   </Button>
-                  <Box sx={{ width: "auto" }} role="presentation">
-                    <SwipeableDrawer
-                      anchor="bottom"
-                      open={open}
-                      onClose={onClickCloseHandler}
-                    >
-                      <ReviewDetail />
-                    </SwipeableDrawer>
-                  </Box>
                 </CardActions>
               </Grid>
             </Card>
           </Grid>
         ))}
+        <Box sx={{ width: "auto" }} role="presentation">
+          <SwipeableDrawer
+            anchor="bottom"
+            open={open}
+            onOpen={onClickHandler}
+            onClose={onClickCloseHandler}
+          >
+            <ReviewDetail rPk={selectedPk} />
+          </SwipeableDrawer>
+        </Box>
       </Grid>
     </Container>
   );

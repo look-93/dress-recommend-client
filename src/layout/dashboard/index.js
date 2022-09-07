@@ -32,7 +32,9 @@ export default function Dashboard(props) {
     setOpen(false);
   };
 
-  const [isLogin, setIsLogin] = useState(false);
+  const [isLogin, setIsLogin] = useState(
+    localStorage.getItem("userPk") !== null // 로그인상태가아니면 userPk가 null = true , 로그인하면 userPk가 null 이 아님 false
+  );
   const handelIsLogin = () => {
     setIsLogin(true);
   };
@@ -60,10 +62,7 @@ export default function Dashboard(props) {
             로그인
           </Button>
           <Dialog open={open} onClose={handleClose}>
-            <Login
-              clickLoginBtn={() => handleClose()}
-              LoginSuccess={() => handelIsLogin()}
-            />
+            <Login clickLoginBtn={handleClose} LoginSuccess={handelIsLogin} />
           </Dialog>
           <Link to="signup" style={{ textDecoration: "none" }}>
             <Button disableRipple>회원가입</Button>

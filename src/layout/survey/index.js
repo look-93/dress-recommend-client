@@ -9,11 +9,9 @@ import {
   Button,
   Stack,
   Dialog,
-} from '@mui/material';
-import { useState } from 'react';
-import RegistDtail from './registDetail';
-
-//import { Link } from 'react-scroll';
+} from "@mui/material";
+import { useState } from "react";
+import RegistDtail from "./registDetail";
 
 export default function Survey() {
   const [open, setOpen] = useState(false);
@@ -23,9 +21,10 @@ export default function Survey() {
   const handelClickClose = () => {
     setOpen(false);
   };
+
   return (
     <Box sx={{ pt: 6, pb: 6 }}>
-      <Container maxWidth="lx" sx={{ bgcolor: '#bdbdbd', height: 200 }}>
+      <Container maxWidth="lx" sx={{ bgcolor: "#bdbdbd", height: 200 }}>
         <Typography variant="h4" textAlign="center" sx={{ p: 3 }} gutterBottom>
           무료 성격유형검사
         </Typography>
@@ -42,71 +41,22 @@ export default function Survey() {
             질문 1
           </Typography>
 
-          <RadioGroup row sx={{ justifyContent: 'center', my: 5 }}>
+          <RadioGroup row sx={{ justifyContent: "center", my: 5 }}>
             <FormControlLabel
               value="바지"
-              control={<Radio color="success" size="large" />}
+              control={<Radio color="success" size="medium" />}
               label="바지"
             />
             <FormControlLabel
               value="하의"
-              control={<Radio color="success" size="large" />}
+              control={<Radio color="success" size="medium" />}
               label="하의"
             />
           </RadioGroup>
         </Box>
         <Divider />
       </Container>
-      <Container sx={{ py: 8 }} maxWidth="lg">
-        <Box sx={{ mb: 5 }}>
-          <Typography variant="h5" align="center">
-            질문 2
-          </Typography>
-          <RadioGroup row sx={{ justifyContent: 'center', my: 5 }}>
-            <FormControlLabel
-              value="반바지"
-              control={<Radio color="success" size="large" />}
-              label="반바지"
-            />
-            <FormControlLabel
-              value="긴바지"
-              control={<Radio color="success" size="large" />}
-              label="긴바지"
-            />
-            <FormControlLabel
-              value="치마"
-              control={<Radio color="success" size="large" />}
-              label="치마"
-            />
-          </RadioGroup>
-        </Box>
-        <Divider />
-      </Container>
-      <Container sx={{ py: 8 }} maxWidth="lg">
-        <Box sx={{ mb: 5 }}>
-          <Typography variant="h5" align="center">
-            질문 3
-          </Typography>
-          <RadioGroup row sx={{ justifyContent: 'center', my: 5 }}>
-            <FormControlLabel
-              value="반바지"
-              control={<Radio color="success" size="large" />}
-              label="반바지"
-            />
-            <FormControlLabel
-              value="긴바지"
-              control={<Radio color="success" size="large" />}
-              label="긴바지"
-            />
-            <FormControlLabel
-              value="치마"
-              control={<Radio color="success" size="large" />}
-              label="치마"
-            />
-          </RadioGroup>
-        </Box>
-        <Divider />
-      </Container>
+
       <Stack alignItems="center">
         <Button
           size="large"

@@ -21,3 +21,13 @@ create_date datetime not null,
 u_pk int(11) not null,
 constraint fk_user_review foreign key(u_pk) references dress.user(u_pk)
 );
+
+create table dress.comment(
+c_pk int(11) not null primary key,
+u_pk int(11) not null,
+r_pk int(11) not null,
+message TEXT not null,
+create_date datetime not null,
+constraint FK_user_comment FOREIGN KEY (u_pk) REFERENCES user(u_pk),
+constraint FK_review_comment FOREIGN KEY (r_pk) REFERENCES review(r_pk)
+);
