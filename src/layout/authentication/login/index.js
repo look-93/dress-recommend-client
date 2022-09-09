@@ -7,51 +7,52 @@ import {
   Checkbox,
   Button,
   Avatar,
-} from "@mui/material";
-import CheckroomIcon from "@mui/icons-material/Checkroom";
-import { Link } from "react-router-dom";
-import axios from "axios";
-import { useState } from "react";
+} from '@mui/material';
+import CheckroomIcon from '@mui/icons-material/Checkroom';
+import { Link } from 'react-router-dom';
+import axios from 'axios';
+import { useState } from 'react';
 
 export default function Login(props) {
-  const [userId, setUserId] = useState("");
+  const [userId, setUserId] = useState('');
   const onUserIdHandler = (e) => {
     setUserId(e.target.value);
   };
 
-  const [userPwd, setUserPwd] = useState("");
+  const [userPwd, setUserPwd] = useState('');
   const onUserPwdHandler = (e) => {
     setUserPwd(e.target.value);
   };
 
   //비동기 함수인데 동기스럽게 쓰기위해서 await를 씀
   const login = async () => {
-    if (userId === "") {
-      alert("아이디를 입력하세요");
+    if (userId === '') {
+      alert('아이디를 입력하세요');
       return;
     }
-    if (userPwd === "") {
-      alert("비밀번호를 입력하세요");
+    if (userPwd === '') {
+      alert('비밀번호를 입력하세요');
       return;
     }
     //메서드는 post, 데이터 전달 형식은 body, 데이터표기법은 json
 
     try {
-      const result = await axios.post("http://127.0.0.1:8080/user/logIn/", {
+      const result = await axios.post('http://127.0.0.1:8080/user/logIn/', {
         uid: userId,
         upassword: userPwd,
       });
       //쿠키는 꺼도 존재(비휘발성 - 스토리지에 저장), 세션은 브라우저 종료시 삭제(휘발성- 메모리에저장)
       //세션에 회원정보 저장
-      alert(result.data.uname + "님 환영합니다!");
-      localStorage.setItem("userPk", result.data.upk);
-      localStorage.setItem("userId", result.data.uid);
+      alert(result.data.uname + '님 환영합니다!');
+      sessionStorage.setItem('userPk', result.data.upk);
+      sessionStorage.setItem('userId', result.data.uid);
+      sessionStorage.setItem('userName', result.data.uname);
       console.log(result);
       props.clickLoginBtn();
       props.LoginSuccess();
     } catch (e) {
       console.log(e);
-      alert("아이디/비밀번호를 확인하세요!");
+      alert('아이디/비밀번호를 확인하세요!');
     }
   };
 
@@ -62,12 +63,12 @@ export default function Login(props) {
       <Box
         sx={{
           marginTop: 4,
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
         }}
       >
-        <Avatar sx={{ bgcolor: "#ef6694", mb: 1 }}>
+        <Avatar sx={{ bgcolor: '#ef6694', mb: 1 }}>
           <CheckroomIcon />
         </Avatar>
         <Typography component="h1" variant="h5">

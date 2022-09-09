@@ -7,10 +7,10 @@ import {
   TextField,
   Button,
   Stack,
-} from "@mui/material";
-import { useState } from "react";
-import axios from "axios";
-import { Link } from "react-router-dom";
+} from '@mui/material';
+import { useState } from 'react';
+import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 // const test = [
 //   {
@@ -24,16 +24,16 @@ import { Link } from "react-router-dom";
 // ];
 
 export default function RegistDtail() {
-  const [content, setContent] = useState("");
+  const [content, setContent] = useState('');
   const contentHandler = (e) => {
     setContent(e.target.value);
   };
 
   const registe = async () => {
-    const uPk = sessionStorage.getItem("userPk");
+    const uPk = sessionStorage.getItem('userPk');
     console.log(uPk);
-    await axios.post("http://127.0.0.1:8080/review/review/", {
-      imgUrl: "https://source.unsplash.com/random",
+    await axios.post('http://127.0.0.1:8080/review/review/', {
+      imgUrl: 'https://source.unsplash.com/random',
       upk: uPk,
       content: content,
     });
@@ -44,7 +44,7 @@ export default function RegistDtail() {
       <Grid container justifyContent="center">
         <Grid item>
           <Card sx={{ width: 330 }}>
-            <CardHeader title="dd" titleTypographyProps={{ align: "center" }} />
+            <CardHeader title="dd" titleTypographyProps={{ align: 'center' }} />
             <CardMedia
               component="img"
               height="330"

@@ -5,18 +5,18 @@ import {
   Typography,
   Stack,
   Dialog,
-} from "@mui/material";
-import Side from "./sidevarList";
-import Main from "./main";
-import Review from "../reviewPage/index";
-import SignUp from "../authentication/sign-up/index";
-import Login from "../authentication/login";
-import Survey from "../survey";
-import Mypage from "../mypage";
+} from '@mui/material';
+import Side from './sidevarList';
+import Main from './main';
+import Review from '../reviewPage/index';
+import SignUp from '../authentication/sign-up/index';
+import Login from '../authentication/login';
+import Survey from '../survey';
+import Mypage from '../mypage';
 
-import { Link } from "react-router-dom";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { useState } from "react";
+import { Link } from 'react-router-dom';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { useState, useEffect } from 'react';
 
 // const getAllUser = async () => {
 //   const r = await axios.get("http://localhost:8080/user/all");
@@ -32,21 +32,33 @@ export default function Dashboard(props) {
     setOpen(false);
   };
 
-  const [isLogin, setIsLogin] = useState(
-    localStorage.getItem("userPk") !== null // 로그인상태가아니면 userPk가 null = true , 로그인하면 userPk가 null 이 아님 false
-  );
   const handelIsLogin = () => {
     setIsLogin(true);
   };
+
+  const [isLogin, setIsLogin] = useState(
+    sessionStorage.getItem('userPk') !== null // 로그인상태가아니면 userPk가 null = true , 로그인하면 userPk가 null 이 아님 false
+  );
+
+  const [userName, setUserName] = useState('');
+  const handelUserName = () => {
+    setUserName(sessionStorage.getItem('userName'));
+  };
+
+  useEffect(() => {
+    handelUserName();
+  }, []);
 
   const LoginMenu = () => {
     if (isLogin) {
       return (
         <>
-          <Typography sx={{ color: "text.secondary" }}>님</Typography>
+          <Button disabled sx={{ color: 'text.secondary' }}>
+            {userName}님
+          </Button>
           <Button
             disableRipple
-            sx={{ color: "text.secondary" }}
+            sx={{ color: 'text.secondary' }}
             onClick={() => {
               setIsLogin(false);
             }}
@@ -64,7 +76,7 @@ export default function Dashboard(props) {
           <Dialog open={open} onClose={handleClose}>
             <Login clickLoginBtn={handleClose} LoginSuccess={handelIsLogin} />
           </Dialog>
-          <Link to="signup" style={{ textDecoration: "none" }}>
+          <Link to="signup" style={{ textDecoration: 'none' }}>
             <Button disableRipple>회원가입</Button>
           </Link>
         </>
@@ -74,10 +86,10 @@ export default function Dashboard(props) {
 
   return (
     <BrowserRouter>
-      <AppBar position="absolute" padding="0" sx={{ bgcolor: "white" }}>
+      <AppBar position="absolute" padding="0" sx={{ bgcolor: 'white' }}>
         <Toolbar>
           <Side />
-          <Link to="/" style={{ textDecoration: "none", flexGrow: 1 }}>
+          <Link to="/" style={{ textDecoration: 'none', flexGrow: 1 }}>
             <Typography color="primary" variant="h6">
               home
             </Typography>

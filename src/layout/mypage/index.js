@@ -19,11 +19,11 @@ import CallIcon from '@mui/icons-material/Call';
 import PermIdentityIcon from '@mui/icons-material/PermIdentity';
 import EmailIcon from '@mui/icons-material/Email';
 import WcIcon from '@mui/icons-material/Wc';
-import { useState, useRef } from 'react';
-import Drawer from '@mui/material/Drawer';
+import { useState, useRef, useEffect } from 'react';
+import axios from 'axios';
 
 export default function Mypage() {
-    //기본 프로필 이미지
+  //기본 프로필 이미지
   const [Image, setImage] = useState(
     'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png'
   );
@@ -48,75 +48,20 @@ export default function Mypage() {
     reader.readAsDataURL(e.target.files[0]);
   };
   //아래에서 박스 올라오기 기능
-  const [state, setState] = React.useState({bottom: false});
+  const [state, setState] = useState({ bottom: false });
 
-  const toggleDrawer = (anchor, open) => (event) => {
-    if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
-      return;
-    }
+  const [info, setInfo] = useState('');
 
-    setState({ ...state, [anchor]: open });
+  const myInfo = async () => {
+    const upk = sessionStorage.getItem('userPk');
+    const myInfoResult = await axios.get('http://127.0.0.1:8080/user/' + upk);
+    console.log(myInfoResult);
+    setInfo(myInfoResult.data);
   };
 
-  const list = (anchor) => (
-    <Container maxWidth="sm">
-    <Box
-      sx={{ width: anchor === 'bottom' ? 'auto' : 250 }}
-      role="presentation"
-      onClick={toggleDrawer(anchor, true)}
-      onKeyDown={toggleDrawer(anchor, true)}
-    >
-    
-      
-        <TextField
-            margin="normal"
-            required
-            fullWidth
-            label="비밀번호"
-            type="password"
-            autoFocus
-          />
-          <TextField
-            margin="normal"
-            required
-            fullWidth
-            label="비밀번호 확인"
-            type="password"
-          />
-          <TextField
-            margin="normal"
-            required
-            fullWidth
-            label="이름"
-          />
-          <TextField
-            margin="normal"
-            required
-            fullWidth
-            label="성별"
-            select
-          >
-            <MenuItem value={'F'}>여자</MenuItem>
-            <MenuItem value={'M'}>남자</MenuItem>
-          </TextField>
-
-          <TextField
-            margin="normal"
-            required
-            fullWidth
-            label="이메일"
-          />
-          <TextField
-            margin="normal"
-            required
-            fullWidth
-            label="휴대전화"
-          />
-    </Box>
-    <Button variant="contained"
-    onClick={toggleDrawer(anchor, false)}>수정하기</Button>
-    </Container>
-  );
+  useEffect(() => {
+    myInfo();
+  }, []);
 
   return (
     <Box>
@@ -142,13 +87,15 @@ export default function Mypage() {
             <Avatar
               alt="Profile"
               src={Image}
-              sx={{ height: '180px', width: '180px', mt: 8 }}
+              sx={{ height: '180px', width: '180px', mt: 4 }}
               onClick={() => {
                 fileInput.current.click();
               }}
               style={{ cursor: 'pointer' }}
             />
-
+            <Button size="small" variant="outlined" sx={{ mt: 2, ml: 2 }}>
+              회원정보 수정하기
+            </Button>
           </Grid>
 
           <Grid item xs={6}>
@@ -159,7 +106,7 @@ export default function Mypage() {
                     <AssignmentIndIcon />
                   </Avatar>
                 </ListItemAvatar>
-                <ListItemText primary="아이디" secondary="kosmodjango" />
+                <ListItemText primary="아이디" secondary={info.uid} />
               </ListItem>
               <Divider variant="inset" component="li" />
               <ListItem>
@@ -168,10 +115,7 @@ export default function Mypage() {
                     <PermIdentityIcon />
                   </Avatar>
                 </ListItemAvatar>
-                <ListItemText
-                  primary="이름"
-                  secondary="고길동"
-                />
+                <ListItemText primary="이름" secondary={info.uname} />
               </ListItem>
               <Divider variant="inset" component="li" />
               <ListItem>
@@ -180,7 +124,10 @@ export default function Mypage() {
                     <WcIcon />
                   </Avatar>
                 </ListItemAvatar>
-                <ListItemText primary="성별" secondary="남성" />
+                <ListItemText
+                  primary="성별"
+                  secondary={info.ugender == 'M' ? '남자' : '여자'}
+                />
               </ListItem>
               <Divider variant="inset" component="li" />
               <ListItem>
@@ -189,7 +136,7 @@ export default function Mypage() {
                     <EmailIcon />
                   </Avatar>
                 </ListItemAvatar>
-                <ListItemText primary="이메일" secondary="kosmo@django.com" />
+                <ListItemText primary="이메일" secondary={info.uemail} />
               </ListItem>
               <Divider variant="inset" component="li" />
               <ListItem>
@@ -198,29 +145,10 @@ export default function Mypage() {
                     <CallIcon />
                   </Avatar>
                 </ListItemAvatar>
-                <ListItemText
-                  primary="휴대전화번호"
-                  secondary="010-1234-5678"
-                />
+                <ListItemText primary="휴대전화번호" secondary={info.uphon} />
               </ListItem>
               <Divider variant="inset" component="li" />
             </List>
-          </Grid>
-          <Grid item xs={10} sx={{ mt: 1 }}>
-            <div>
-              {['bottom'].map((anchor) => (
-                <React.Fragment key={anchor}>
-                <Button size="small" variant="contained" onClick={toggleDrawer(anchor, true)} ><h2>회원정보 수정하기</h2></Button>
-                <Drawer
-                    anchor={anchor}
-                    open={state[anchor]}
-                    onClose={toggleDrawer(anchor, false)}
-                >
-              {list(anchor)}
-                </Drawer>
-                </React.Fragment>
-              ))}
-            </div>
           </Grid>
         </Grid>
       </Box>
