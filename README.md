@@ -31,3 +31,5 @@ create_date datetime not null,
 constraint FK_user_comment FOREIGN KEY (u_pk) REFERENCES user(u_pk),
 constraint FK_review_comment FOREIGN KEY (r_pk) REFERENCES review(r_pk)
 );
+
+.
