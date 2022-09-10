@@ -7,7 +7,7 @@ import {
   Grid,
   Box,
   Divider,
-} from '@mui/material';
+} from "@mui/material";
 
 export default function ReviewMessage() {
   return (
@@ -24,11 +24,11 @@ export default function ReviewMessage() {
       <Box flexDirection="row" sx={{ pt: 3 }}>
         <Typography
           variant="caption"
-          sx={{ color: 'text.secondary', margin: 1 }}
+          sx={{ color: "text.secondary", margin: 1 }}
         >
           최신순
         </Typography>
-        <Typography variant="caption" sx={{ color: 'text.secondary' }}>
+        <Typography variant="caption" sx={{ color: "text.secondary" }}>
           공감순
         </Typography>
       </Box>

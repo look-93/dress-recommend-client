@@ -20,7 +20,7 @@ export default function Review() {
   const [datas, setDatas] = useState([]);
 
   const allReview = async () => {
-    let results = await axios.get("http://localhost:8080/review/all/");
+    const results = await axios.get("http://localhost:8080/review/all/");
     //console.log(results);
     setDatas(results.data);
   };

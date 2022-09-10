@@ -1,4 +1,4 @@
-import * as React from 'react';
+import * as React from "react";
 import {
   Avatar,
   List,
@@ -10,22 +10,21 @@ import {
   Grid,
   Box,
   Button,
-  TextField,
-  MenuItem,
-  Container,
-} from '@mui/material';
-import AssignmentIndIcon from '@mui/icons-material/AssignmentInd';
-import CallIcon from '@mui/icons-material/Call';
-import PermIdentityIcon from '@mui/icons-material/PermIdentity';
-import EmailIcon from '@mui/icons-material/Email';
-import WcIcon from '@mui/icons-material/Wc';
-import { useState, useRef, useEffect } from 'react';
-import axios from 'axios';
+  SwipeableDrawer,
+} from "@mui/material";
+import AssignmentIndIcon from "@mui/icons-material/AssignmentInd";
+import CallIcon from "@mui/icons-material/Call";
+import PermIdentityIcon from "@mui/icons-material/PermIdentity";
+import EmailIcon from "@mui/icons-material/Email";
+import WcIcon from "@mui/icons-material/Wc";
+import { useState, useRef, useEffect } from "react";
+import axios from "axios";
+import EditMyPage from "./edit";
 
 export default function Mypage() {
   //기본 프로필 이미지
   const [Image, setImage] = useState(
-    'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png'
+    "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png"
   );
   const fileInput = useRef(null);
 
@@ -34,7 +33,7 @@ export default function Mypage() {
     } else {
       //업로드 취소할 시
       setImage(
-        'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png'
+        "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png"
       );
       return;
     }
@@ -47,15 +46,22 @@ export default function Mypage() {
     };
     reader.readAsDataURL(e.target.files[0]);
   };
-  //아래에서 박스 올라오기 기능
-  const [state, setState] = useState({ bottom: false });
 
-  const [info, setInfo] = useState('');
+  //아래에서 박스 올라오기 기능
+  const [state, setState] = useState(false);
+  const getOpenStateHandler = () => {
+    setState(true);
+  };
+  const getCloseStateHandler = () => {
+    setState(false);
+  };
+
+  const [info, setInfo] = useState("");
 
   const myInfo = async () => {
-    const upk = sessionStorage.getItem('userPk');
-    const myInfoResult = await axios.get('http://127.0.0.1:8080/user/' + upk);
-    console.log(myInfoResult);
+    const upk = sessionStorage.getItem("userPk");
+    const myInfoResult = await axios.get("http://127.0.0.1:8080/user/" + upk);
+    //console.log(myInfoResult);
     setInfo(myInfoResult.data);
   };
 
@@ -73,12 +79,12 @@ export default function Mypage() {
       >
         <h2>My Page</h2>
       </Typography>
-      <Box sx={{ display: 'flex' }} justifyContent="center">
+      <Box sx={{ display: "flex" }} justifyContent="center">
         <Grid container maxWidth="sm">
           <Grid item xs={6} sx={{ mt: 5 }}>
             <input
               type="file"
-              style={{ display: 'none' }}
+              style={{ display: "none" }}
               accept="image/jpg,impge/png,image/jpeg"
               name="profile_img"
               onChange={onChange}
@@ -87,16 +93,31 @@ export default function Mypage() {
             <Avatar
               alt="Profile"
               src={Image}
-              sx={{ height: '180px', width: '180px', mt: 4 }}
+              sx={{ height: "180px", width: "180px", mt: 4 }}
               onClick={() => {
                 fileInput.current.click();
               }}
-              style={{ cursor: 'pointer' }}
+              style={{ cursor: "pointer" }}
             />
-            <Button size="small" variant="outlined" sx={{ mt: 2, ml: 2 }}>
+            <Button
+              size="small"
+              variant="outlined"
+              sx={{ mt: 2, ml: 3 }}
+              onClick={getOpenStateHandler}
+            >
               회원정보 수정하기
             </Button>
           </Grid>
+          <Box sx={{ width: "auto" }} role="presentation">
+            <SwipeableDrawer
+              anchor="bottom"
+              open={state}
+              onOpen={getOpenStateHandler}
+              onClose={getCloseStateHandler}
+            >
+              <EditMyPage closeHandler={getCloseStateHandler} />
+            </SwipeableDrawer>
+          </Box>
 
           <Grid item xs={6}>
             <List>
@@ -126,7 +147,7 @@ export default function Mypage() {
                 </ListItemAvatar>
                 <ListItemText
                   primary="성별"
-                  secondary={info.ugender == 'M' ? '남자' : '여자'}
+                  secondary={info.ugender === "M" ? "남자" : "여자"}
                 />
               </ListItem>
               <Divider variant="inset" component="li" />
