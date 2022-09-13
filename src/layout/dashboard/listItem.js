@@ -21,6 +21,11 @@ export default function ListItem() {
           <ListItemText primary="마이페이지" />
         </Link>
       </ListItemButton>
+      <ListItemButton>
+        <Link to="/aboutus" style={{ textDecoration: "none" }}>
+          <ListItemText primary="About Us" />
+        </Link>
+      </ListItemButton>
     </List>
   );
 }
