@@ -14,6 +14,8 @@ npm install axios
 
 npm install react-router-dom
 
+npm i styled-components --force
+
 create table dress.review(
 r_pk int(11) not null AUTO_INCREMENT primary key,
 img_url varchar(200) not null,

@@ -24,34 +24,38 @@ import { Link } from 'react-router-dom';
 // ];
 
 export default function RegistDtail() {
-  const [content, setContent] = useState('');
-  const contentHandler = (e) => {
-    setContent(e.target.value);
-  };
+  // const [content, setContent] = useState('');
+  // const contentHandler = (e) => {
+  //   setContent(e.target.value);
+  // };
 
   const registe = async () => {
     const uPk = sessionStorage.getItem('userPk');
-    console.log(uPk);
+    //console.log(uPk);
     await axios.post('http://127.0.0.1:8080/review/review/', {
       imgUrl: 'https://source.unsplash.com/random',
       upk: uPk,
-      content: content,
     });
   };
+
+  const userId = sessionStorage.getItem('userId');
 
   return (
     <Container maxWidth="md" component="main">
       <Grid container justifyContent="center">
         <Grid item>
-          <Card sx={{ width: 330 }}>
-            <CardHeader title="dd" titleTypographyProps={{ align: 'center' }} />
+          <CardHeader
+            title={userId}
+            titleTypographyProps={{ align: 'center' }}
+          />
+          <Card sx={{ width: 500, m: 5 }}>
             <CardMedia
               component="img"
-              height="330"
+              height="500"
               image=""
               alt="unsplash image"
             />
-            <TextField
+            {/* <TextField
               autoFocus
               margin="dense"
               id="name"
@@ -60,15 +64,15 @@ export default function RegistDtail() {
               onChange={contentHandler}
               fullWidth
               variant="standard"
-            />
-            <Stack alignItems="center">
-              <Link to="/review">
-                <Button size="small" onClick={registe}>
-                  확인
-                </Button>
-              </Link>
-            </Stack>
+            /> */}
           </Card>
+          <Stack alignItems="center">
+            <Link to="/mypage" style={{ textDecoration: 'none' }}>
+              <Button size="medium" onClick={registe}>
+                결과저장
+              </Button>
+            </Link>
+          </Stack>
         </Grid>
       </Grid>
     </Container>

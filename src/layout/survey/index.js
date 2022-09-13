@@ -9,9 +9,9 @@ import {
   Button,
   Stack,
   Dialog,
-} from "@mui/material";
-import { useState } from "react";
-import RegistDtail from "./registDetail";
+} from '@mui/material';
+import { useState } from 'react';
+import RegistDtail from './registDetail';
 
 export default function Survey() {
   const [open, setOpen] = useState(false);
@@ -24,7 +24,7 @@ export default function Survey() {
 
   return (
     <Box sx={{ pt: 6, pb: 6 }}>
-      <Container maxWidth="lx" sx={{ bgcolor: "#bdbdbd", height: 200 }}>
+      <Container maxWidth="lx" sx={{ bgcolor: '#bdbdbd', height: 200 }}>
         <Typography variant="h4" textAlign="center" sx={{ p: 3 }} gutterBottom>
           무료 성격유형검사
         </Typography>
@@ -41,7 +41,7 @@ export default function Survey() {
             질문 1
           </Typography>
 
-          <RadioGroup row sx={{ justifyContent: "center", my: 5 }}>
+          <RadioGroup row sx={{ justifyContent: 'center', my: 5 }}>
             <FormControlLabel
               value="바지"
               control={<Radio color="success" size="medium" />}
@@ -64,7 +64,7 @@ export default function Survey() {
           sx={{ mt: 10 }}
           onClick={handelClickOpen}
         >
-          제출하기
+          결과확인
         </Button>
         <Dialog open={open} onClose={handelClickClose}>
           <RegistDtail />

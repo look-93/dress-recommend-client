@@ -8,21 +8,63 @@ import {
 } from '@mui/material';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 export default function EditMyPage(props) {
-  const [user, setUSer] = useState('');
+  const navigate = useNavigate();
+  const [user, setUser] = useState('');
+
   const [updatePwd, setUpdatePwd] = useState('');
   const onUdatePwdHandler = (e) => {
-    setUpdatePwd(e.taget.value);
+    setUpdatePwd(e.target.value);
+  };
+  const [updateEmail, setUpdateEmail] = useState('');
+  const onUdateEmailHandler = (e) => {
+    setUpdateEmail(e.target.value);
   };
 
-  const editUser = async () => {
-    const upk = sessionStorage.getItem('userPk');
-    const editUserResult = await axios.get('http://127.0.0.1:8080/user/' + upk);
-    setUSer(editUserResult.data);
+  const [updatePh, setUpdatePh] = useState('');
+  const onUpdatePhHandler = (e) => {
+    setUpdatePh(e.target.value);
+  };
 
-    const updateMyInfo = await axios.put('http://127.0.0.1:8080/user/' + upk);
+  const upk = sessionStorage.getItem('userPk');
+  const editUser = async () => {
+    const editUserResult = await axios.get('http://127.0.0.1:8080/user/' + upk);
+    setUser(editUserResult.data);
+  };
+
+  const update = async () => {
+    if (updatePwd === '') {
+      alert('아이디를 입력해주세요');
+      return;
+    } else if (updatePwd.length < 4) {
+      alert('아이디는 최소 4자 이상 적어주세요');
+      return;
+    }
+
+    if (!updateEmail.includes('@') || !updateEmail.includes('.')) {
+      alert('이메일을 확인해 주세요.');
+      return;
+    }
+
+    if (updatePh === '') {
+      alert('휴대폰 번호를 확인해 주세요.');
+      return;
+    } else if (isNaN(updatePh * 1)) {
+      alert('숫자를 입력하세요');
+      return;
+    }
+    const updateMyInfo = await axios.put('http://127.0.0.1:8080/user/update/', {
+      upk: upk,
+      upassword: updatePwd,
+      uemail: updateEmail,
+      uphon: updatePh,
+    });
+    //console.log(updateMyInfo);
+    alert('수정 완료!');
+
+    navigate('/');
   };
 
   useEffect(() => {
@@ -54,8 +96,6 @@ export default function EditMyPage(props) {
             value={updatePwd}
             onChange={onUdatePwdHandler}
           />
-          비밀번호확인
-          <TextField margin="normal" fullWidth type="password" />
           이름
           <TextField margin="normal" fullWidth label={user.uname} disabled />
           성별
@@ -66,16 +106,28 @@ export default function EditMyPage(props) {
             disabled
           />
           이메일
-          <TextField margin="normal" required fullWidth label="" />
+          <TextField
+            margin="normal"
+            required
+            fullWidth
+            value={updateEmail}
+            onChange={onUdateEmailHandler}
+          />
           휴대전화
-          <TextField margin="normal" required fullWidth label="" />
+          <TextField
+            margin="normal"
+            required
+            fullWidth
+            value={updatePh}
+            onChange={onUpdatePhHandler}
+          />
           <Button
             variant="contained"
             fullWidth
             sx={{ mt: 1 }}
             size="large"
             disableRipple
-            onClick={props.closeHandler}
+            onClick={update}
           >
             수정하기
           </Button>

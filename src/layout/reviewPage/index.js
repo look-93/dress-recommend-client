@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState } from 'react';
 import {
   Container,
   Button,
@@ -11,16 +11,17 @@ import {
   Box,
   SwipeableDrawer,
   Typography,
-} from "@mui/material";
-import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
-import ReviewDetail from "./reviewDetail";
-import axios from "axios";
+} from '@mui/material';
+import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
+import ReviewDetail from './reviewDetail';
+import styled from 'styled-components';
+import axios from 'axios';
 
 export default function Review() {
   const [datas, setDatas] = useState([]);
 
   const allReview = async () => {
-    const results = await axios.get("http://localhost:8080/review/all/");
+    const results = await axios.get('http://localhost:8080/review/all/');
     //console.log(results);
     setDatas(results.data);
   };
@@ -38,16 +39,36 @@ export default function Review() {
   const onClickCloseHandler = () => {
     setOpen(false);
   };
+
+  const Top = styled.button`
+    position: fixed;
+    bottom: 5%;
+    right: 2rem;
+
+    background-color: gray;
+    color: white;
+    border: gray;
+    width: 75px;
+    height: 25px;
+    border-radius: 25px;
+  `;
   return (
     <Container sx={{ py: 15 }} maxWidth="md">
+      <Top
+        onClick={() => {
+          window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
+        }}
+      >
+        위로 가기
+      </Top>
       <Grid container spacing={4}>
         {datas.map((data, index) => (
           <Grid item key={index} xs={12} sm={6} md={4}>
             <Card
               sx={{
-                height: "100%",
-                display: "flex",
-                flexDirection: "column",
+                height: '100%',
+                display: 'flex',
+                flexDirection: 'column',
               }}
             >
               <CardHeader title={data.uid} subheader={data.createDate} />
@@ -81,7 +102,7 @@ export default function Review() {
             </Card>
           </Grid>
         ))}
-        <Box sx={{ width: "auto" }} role="presentation">
+        <Box sx={{ width: 'auto' }} role="presentation">
           <SwipeableDrawer
             anchor="bottom"
             open={open}

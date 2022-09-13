@@ -17,13 +17,14 @@ import Mypage from '../mypage';
 import { Link } from 'react-router-dom';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { useState } from 'react';
+import { useEffect } from 'react';
 
 // const getAllUser = async () => {
 //   const r = await axios.get("http://localhost:8080/user/all");
 //   console.log(r);
 // };
 
-export default function Dashboard(props) {
+export default function Dashboard() {
   const [open, setOpen] = useState(false);
   const handelClickOpen = () => {
     setOpen(true);
@@ -32,13 +33,12 @@ export default function Dashboard(props) {
     setOpen(false);
   };
 
-  const handelIsLogin = () => {
-    setIsLogin(true);
-  };
-
   const [isLogin, setIsLogin] = useState(
     sessionStorage.getItem('userPk') !== null // 로그인상태가아니면 userPk가 null = true , 로그인하면 userPk가 null 이 아님 false
   );
+  const handelIsLogin = () => {
+    setIsLogin(true);
+  };
 
   const [userName, setUserName] = useState('');
   const getUserName = () => {
@@ -51,7 +51,9 @@ export default function Dashboard(props) {
   };
 
   const LoginMenu = () => {
-    getUserName();
+    useEffect(() => {
+      getUserName();
+    }, []);
 
     if (isLogin) {
       return (
