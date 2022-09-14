@@ -20,7 +20,7 @@ import WcIcon from '@mui/icons-material/Wc';
 import { useState, useRef, useEffect } from 'react';
 import axios from 'axios';
 import EditMyPage from './edit';
-import MyReview from './myReview';
+import SurveyResult from './surveyResult';
 
 export default function Mypage() {
   //기본 프로필 이미지
@@ -176,7 +176,7 @@ export default function Mypage() {
         </Grid>
       </Box>
       <Grid item>
-        <MyReview />
+        <SurveyResult />
       </Grid>
     </Box>
   );

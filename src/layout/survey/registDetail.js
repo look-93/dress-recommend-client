@@ -12,23 +12,7 @@ import { useState } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 
-// const test = [
-//   {
-//     title: "Pro",
-//     subheader: "Most popular",
-//     price: "15",
-//     src: "https://source.unsplash.com/random",
-//     buttonText: "Get started",
-//     buttonVariant: "contained",
-//   },
-// ];
-
 export default function RegistDtail() {
-  // const [content, setContent] = useState('');
-  // const contentHandler = (e) => {
-  //   setContent(e.target.value);
-  // };
-
   const registe = async () => {
     const uPk = sessionStorage.getItem('userPk');
     //console.log(uPk);

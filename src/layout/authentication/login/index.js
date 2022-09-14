@@ -11,6 +11,7 @@ import {
 import CheckroomIcon from '@mui/icons-material/Checkroom';
 import axios from 'axios';
 import { useState } from 'react';
+import { Form } from 'react-bootstrap';
 
 export default function Login(props) {
   const [userId, setUserId] = useState('');
@@ -56,6 +57,11 @@ export default function Login(props) {
       alert('아이디/비밀번호를 확인하세요!');
     }
   };
+  const onCheckEnter = (e) => {
+    if (e.key === 'Enter') {
+      login();
+    }
+  };
 
   //하나끝나고 하나하고 -> 동기 (순서대로실행)
   //실행 확인 안하고 지나감 나중에 확인(비동기)
@@ -69,55 +75,57 @@ export default function Login(props) {
           alignItems: 'center',
         }}
       >
-        <Avatar sx={{ bgcolor: '#ef6694', mb: 1 }}>
-          <CheckroomIcon />
-        </Avatar>
-        <Typography component="h1" variant="h5">
-          로그인
-        </Typography>
-        <Box component="form" noValidate sx={{ mt: 1, mb: 4 }}>
-          <TextField
-            margin="normal"
-            required
-            fullWidth
-            id="아이디"
-            label="아이디"
-            autoFocus
-            value={userId}
-            onChange={onUserIdHandler}
-          />
-          <TextField
-            margin="normal"
-            required
-            fullWidth
-            id="비밀번호"
-            label="비밀번호"
-            type="password"
-            value={userPwd}
-            onChange={onUserPwdHandler}
-          />
-          <FormControlLabel
-            control={
-              <Checkbox
-                value="remembar"
-                color="primary"
-                disableRipple
-                size="small"
-              />
-            }
-            label="아이디, 비밀번호를 저장하겠습니까?"
-          />
-
-          <Button
-            variant="contained"
-            value="login"
-            fullWidth
-            sx={{ mt: 1 }}
-            onClick={login}
-          >
+        <Form onKeyPress={onCheckEnter}>
+          <Avatar sx={{ bgcolor: '#ef6694', mb: 1 }}>
+            <CheckroomIcon />
+          </Avatar>
+          <Typography component="h1" variant="h5">
             로그인
-          </Button>
-        </Box>
+          </Typography>
+          <Box component="form" noValidate sx={{ mt: 1, mb: 4 }}>
+            <TextField
+              margin="normal"
+              required
+              fullWidth
+              id="아이디"
+              label="아이디"
+              autoFocus
+              value={userId}
+              onChange={onUserIdHandler}
+            />
+            <TextField
+              margin="normal"
+              required
+              fullWidth
+              id="비밀번호"
+              label="비밀번호"
+              type="password"
+              value={userPwd}
+              onChange={onUserPwdHandler}
+            />
+            <FormControlLabel
+              control={
+                <Checkbox
+                  value="remembar"
+                  color="primary"
+                  disableRipple
+                  size="small"
+                />
+              }
+              label="아이디, 비밀번호를 저장하겠습니까?"
+            />
+
+            <Button
+              variant="contained"
+              value="login"
+              fullWidth
+              sx={{ mt: 1 }}
+              onClick={login}
+            >
+              로그인
+            </Button>
+          </Box>
+        </Form>
       </Box>
     </Container>
   );

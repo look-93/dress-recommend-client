@@ -5,14 +5,29 @@ import {
   CardHeader,
   CardMedia,
   Typography,
-  CardActions,
   Button,
   Box,
+  TextField,
+  Dialog,
+  DialogTitle,
+  DialogContent,
+  DialogContentText,
+  DialogActions,
 } from '@mui/material';
 import axios from 'axios';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, React } from 'react';
 
-export default function MyReview() {
+export default function SurveyResult() {
+  const [open, setOpen] = useState(false);
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
   const [datas, setDatas] = useState([]);
   const [datas1, setDatas1] = useState([]);
 
@@ -21,7 +36,7 @@ export default function MyReview() {
     const results = await axios.get(
       'http://127.0.0.1:8080/review/myreview/' + upk
     );
-    console.log(results);
+    //console.log(results);
     setDatas(results.data);
   };
 
@@ -79,12 +94,31 @@ export default function MyReview() {
                   image={data.imgUrl}
                   alt="unsplash image"
                 />
-                <Typography autoFocus variant="body2"></Typography>
+                <Button onClick={handleClickOpen}>평가하기</Button>
               </Card>
             </Grid>
           ))}
         </Grid>
       </Box>
+      <Dialog open={open} onClose={handleClose}>
+        <DialogTitle>한줄평</DialogTitle>
+        <DialogContent>
+          <DialogContentText>
+            다른 사용자들에게 의견을 들려주세요.
+          </DialogContentText>
+          <TextField
+            autoFocus
+            margin="dense"
+            id="name"
+            fullWidth
+            variant="standard"
+          />
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleClose}>취소</Button>
+          <Button onClick={handleClose}>확인</Button>
+        </DialogActions>
+      </Dialog>
     </Box>
   );
 }
