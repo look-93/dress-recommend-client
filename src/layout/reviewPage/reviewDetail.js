@@ -8,24 +8,24 @@ import {
   Stack,
   Button,
   Typography,
-} from '@mui/material';
-import axios from 'axios';
-import { useEffect, useState } from 'react';
-import ReviewMessage from './reviewMessage';
+} from "@mui/material";
+import axios from "axios";
+import { useEffect, useState } from "react";
+import ReviewMessage from "./reviewMessage";
 
 export default function ReviewDetail(props) {
   //console.log(props.rPk);
   const [reviewPkData, setReviewPkData] = useState([]);
   const getReviewByPk = async () => {
     const reviewByPkResult = await axios.get(
-      'http://127.0.0.1:8080/review/' + props.rPk
+      "http://127.0.0.1:8080/review/" + props.rPk
     );
     //console.log(reviewByPkResult);
     setReviewPkData(reviewByPkResult.data);
   };
 
   useEffect(() => {
-    console.log(props.rPk);
+    //console.log(props.rPk);
     getReviewByPk();
   }, []);
   //

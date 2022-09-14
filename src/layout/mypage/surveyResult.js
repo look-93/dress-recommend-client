@@ -14,10 +14,10 @@ import {
   DialogContentText,
   DialogActions,
   IconButton,
-} from '@mui/material';
-import axios from 'axios';
-import { useEffect, useState, React } from 'react';
-import CloseIcon from '@mui/icons-material/Close';
+} from "@mui/material";
+import axios from "axios";
+import { useEffect, useState, React } from "react";
+import CloseIcon from "@mui/icons-material/Close";
 
 export default function SurveyResult() {
   const [open, setOpen] = useState(false);
@@ -34,11 +34,11 @@ export default function SurveyResult() {
   const [datas1, setDatas1] = useState([]);
 
   const getMyReviewByPk = async () => {
-    const upk = sessionStorage.getItem('userPk');
+    const upk = sessionStorage.getItem("userPk");
     const results = await axios.get(
-      'http://127.0.0.1:8080/review/myreview/' + upk
+      "http://127.0.0.1:8080/review/myreview/" + upk
     );
-    //console.log(results);
+    console.log(results);
     setDatas(results.data);
   };
 
@@ -47,8 +47,8 @@ export default function SurveyResult() {
   }, []);
 
   return (
-    <Box sx={{ display: 'flex', ml: 10 }}>
-      <Box sx={{ flexGrow: 1 }} m={2}>
+    <Box sx={{ display: "flex", ml: 10 }}>
+      {/* <Box sx={{ flexGrow: 1 }} m={2}>
         <Box sx={{ mt: 5, mb: 5, ml: 5 }}>
           <Typography variant="h5">내가 쓴 후기</Typography>
         </Box>
@@ -73,23 +73,23 @@ export default function SurveyResult() {
             </Grid>
           ))}
         </Grid>
-      </Box>
+      </Box> */}
 
       <Box sx={{ flexGrow: 1 }} m={2}>
         <Box sx={{ mt: 5, mb: 5, ml: 5 }}>
           <Typography variant="h5">내 옷장</Typography>
         </Box>
         <Grid container spacing={{ xs: 6, md: 3 }}>
-          {datas.map((data, index) => (
-            <Grid item key={index}>
+          {datas.map((data) => (
+            <Grid item key={data.rpk}>
               <Card
                 sx={{
-                  height: '100%',
-                  display: 'flex',
-                  flexDirection: 'column',
+                  height: "100%",
+                  display: "flex",
+                  flexDirection: "column",
                 }}
               >
-                <Grid item sx={{ display: 'flex' }}>
+                <Grid item sx={{ display: "flex" }}>
                   <CardHeader title={data.uid} subheader={data.createDate} />
                   <IconButton disableRipple>
                     <CloseIcon />
