@@ -7,7 +7,7 @@ import MyReview from './layout/mypage/myReview';
 function App() {
   return (
     <Dashboard />
-    //<Mypage />
+    //<MyReview />
   );
 }
 
