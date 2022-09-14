@@ -13,9 +13,11 @@ import {
   DialogContent,
   DialogContentText,
   DialogActions,
+  IconButton,
 } from '@mui/material';
 import axios from 'axios';
 import { useEffect, useState, React } from 'react';
+import CloseIcon from '@mui/icons-material/Close';
 
 export default function SurveyResult() {
   const [open, setOpen] = useState(false);
@@ -87,7 +89,13 @@ export default function SurveyResult() {
                   flexDirection: 'column',
                 }}
               >
-                <CardHeader title={data.uid} subheader={data.createDate} />
+                <Grid item sx={{ display: 'flex' }}>
+                  <CardHeader title={data.uid} subheader={data.createDate} />
+                  <IconButton disableRipple>
+                    <CloseIcon />
+                  </IconButton>
+                </Grid>
+
                 <CardMedia
                   component="img"
                   height="300"

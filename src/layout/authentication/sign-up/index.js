@@ -162,27 +162,6 @@ export default function SignUp() {
             <MenuItem value={'M'}>남자</MenuItem>
           </TextField>
 
-          {/* <Grid container spacing={2}>
-            <Grid item xs={12} sm={6}>
-              <TextField
-                autoComplete="given-name"
-                required
-                fullWidth
-                label="이메일"
-                autoFocus
-              />
-            </Grid>
-            <Grid item xs={12} sm={6}>
-              <TextField required fullWidth label="선택" select>
-                <MenuItem value={'naver'}>naver.com</MenuItem>
-                <MenuItem value={'daum'}>daum.net</MenuItem>
-                <MenuItem value={'daum'} aria-selected>
-                  직접입력
-                </MenuItem>
-              </TextField>
-            </Grid>
-          </Grid> */}
-
           <TextField
             margin="normal"
             required
