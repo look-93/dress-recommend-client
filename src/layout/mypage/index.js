@@ -1,4 +1,4 @@
-import * as React from 'react';
+import * as React from "react";
 import {
   Avatar,
   List,
@@ -11,22 +11,22 @@ import {
   Box,
   Button,
   SwipeableDrawer,
-} from '@mui/material';
-import AssignmentIndIcon from '@mui/icons-material/AssignmentInd';
-import CallIcon from '@mui/icons-material/Call';
-import PermIdentityIcon from '@mui/icons-material/PermIdentity';
-import EmailIcon from '@mui/icons-material/Email';
-import WcIcon from '@mui/icons-material/Wc';
-import { useState, useRef, useEffect } from 'react';
-import axios from 'axios';
-import EditMyPage from './edit';
-import BtnGroup from './btnGroup';
-import DeleteMyPage from './delete';
+} from "@mui/material";
+import AssignmentIndIcon from "@mui/icons-material/AssignmentInd";
+import CallIcon from "@mui/icons-material/Call";
+import PermIdentityIcon from "@mui/icons-material/PermIdentity";
+import EmailIcon from "@mui/icons-material/Email";
+import WcIcon from "@mui/icons-material/Wc";
+import { useState, useRef, useEffect } from "react";
+import axios from "axios";
+import EditMyPage from "./edit";
+import BtnGroup from "./btnGroup";
+import DeleteMyPage from "./delete";
 
 export default function Mypage() {
   //기본 프로필 이미지
   const [Image, setImage] = useState(
-    'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png'
+    "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png"
   );
   const fileInput = useRef(null);
 
@@ -35,7 +35,7 @@ export default function Mypage() {
     } else {
       //업로드 취소할 시
       setImage(
-        'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png'
+        "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png"
       );
       return;
     }
@@ -67,11 +67,11 @@ export default function Mypage() {
     setState2(false);
   };
 
-  const [info, setInfo] = useState('');
+  const [info, setInfo] = useState("");
 
   const myInfo = async () => {
-    const upk = sessionStorage.getItem('userPk');
-    const myInfoResult = await axios.get('http://127.0.0.1:8080/user/' + upk);
+    const upk = sessionStorage.getItem("userPk");
+    const myInfoResult = await axios.get("http://127.0.0.1:8080/user/" + upk);
     //console.log(myInfoResult);
     setInfo(myInfoResult.data);
   };
@@ -90,12 +90,12 @@ export default function Mypage() {
       >
         My Page
       </Typography>
-      <Box sx={{ display: 'flex' }} justifyContent="center">
+      <Box sx={{ display: "flex" }} justifyContent="center">
         <Grid container maxWidth="sm">
           <Grid item xs={6} sx={{ mt: 5 }}>
             <input
               type="file"
-              style={{ display: 'none' }}
+              style={{ display: "none" }}
               accept="image/jpg,impge/png,image/jpeg"
               name="profile_img"
               onChange={onChange}
@@ -104,16 +104,16 @@ export default function Mypage() {
             <Avatar
               alt="Profile"
               src={Image}
-              sx={{ height: '180px', width: '180px', mt: 4 }}
+              sx={{ height: "180px", width: "180px", mt: 4 }}
               onClick={() => {
                 fileInput.current.click();
               }}
-              style={{ cursor: 'pointer' }}
+              style={{ cursor: "pointer" }}
             />
             <Grid item>
               <Button
                 size="small"
-                variant="outlined"
+                variant="text"
                 sx={{ mt: 2, ml: 3 }}
                 onClick={getOpenStateHandler}
               >
@@ -123,8 +123,8 @@ export default function Mypage() {
             <Grid item>
               <Button
                 size="small"
-                variant="outlined"
-                sx={{ mt: 2, ml: 7 }}
+                variant="text"
+                sx={{ ml: 7 }}
                 onClick={getOpenStateHandler2}
               >
                 회원탈퇴
@@ -132,7 +132,7 @@ export default function Mypage() {
             </Grid>
           </Grid>
 
-          <Box sx={{ width: 'auto' }} role="presentation">
+          <Box sx={{ width: "auto" }} role="presentation">
             <SwipeableDrawer
               anchor="bottom"
               open={state}
@@ -179,7 +179,7 @@ export default function Mypage() {
                 </ListItemAvatar>
                 <ListItemText
                   primary="성별"
-                  secondary={info.ugender === 'M' ? '남자' : '여자'}
+                  secondary={info.ugender === "M" ? "남자" : "여자"}
                 />
               </ListItem>
               <Divider variant="inset" component="li" />
