@@ -20,7 +20,8 @@ import WcIcon from '@mui/icons-material/Wc';
 import { useState, useRef, useEffect } from 'react';
 import axios from 'axios';
 import EditMyPage from './edit';
-import SurveyResult from './surveyResult';
+import BtnGroup from './btnGroup';
+import DeleteMyPage from './delete';
 
 export default function Mypage() {
   //기본 프로필 이미지
@@ -55,6 +56,15 @@ export default function Mypage() {
   };
   const getCloseStateHandler = () => {
     setState(false);
+  };
+
+  //아래에서 박스 올라오기 기능(회원탈퇴)
+  const [state2, setState2] = useState(false);
+  const getOpenStateHandler2 = () => {
+    setState2(true);
+  };
+  const getCloseStateHandler2 = () => {
+    setState2(false);
   };
 
   const [info, setInfo] = useState('');
@@ -100,14 +110,26 @@ export default function Mypage() {
               }}
               style={{ cursor: 'pointer' }}
             />
-            <Button
-              size="small"
-              variant="outlined"
-              sx={{ mt: 2, ml: 3 }}
-              onClick={getOpenStateHandler}
-            >
-              회원정보 수정하기
-            </Button>
+            <Grid item>
+              <Button
+                size="small"
+                variant="outlined"
+                sx={{ mt: 2, ml: 3 }}
+                onClick={getOpenStateHandler}
+              >
+                회원정보 수정하기
+              </Button>
+            </Grid>
+            <Grid item>
+              <Button
+                size="small"
+                variant="outlined"
+                sx={{ mt: 2, ml: 7 }}
+                onClick={getOpenStateHandler2}
+              >
+                회원탈퇴
+              </Button>
+            </Grid>
           </Grid>
 
           <Box sx={{ width: 'auto' }} role="presentation">
@@ -118,6 +140,14 @@ export default function Mypage() {
               onClose={getCloseStateHandler}
             >
               <EditMyPage closeHandler={getCloseStateHandler} />
+            </SwipeableDrawer>
+            <SwipeableDrawer
+              anchor="bottom"
+              open={state2}
+              onOpen={getOpenStateHandler2}
+              onClose={getCloseStateHandler2}
+            >
+              <DeleteMyPage closeHandler={getCloseStateHandler2} />
             </SwipeableDrawer>
           </Box>
 
@@ -176,7 +206,7 @@ export default function Mypage() {
         </Grid>
       </Box>
       <Grid item>
-        <SurveyResult />
+        <BtnGroup />
       </Grid>
     </Box>
   );

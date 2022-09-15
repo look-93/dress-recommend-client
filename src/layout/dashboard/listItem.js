@@ -3,29 +3,29 @@ import {
   ListItemButton,
   ListItemText,
   ListSubheader,
-} from "@mui/material";
+} from '@mui/material';
 //import { Box } from '@mui/system';
-import { Link } from "react-router-dom";
+import { Link } from 'react-router-dom';
 
 export default function ListItem() {
   return (
     <List>
       <ListSubheader>Menu</ListSubheader>
-      <ListItemButton>
-        <Link to="/review" style={{ textDecoration: "none" }}>
+      <Link to="/review" style={{ textDecoration: 'none', color: 'inherit' }}>
+        <ListItemButton>
           <ListItemText primary="후기" />
-        </Link>
-      </ListItemButton>
-      <ListItemButton>
-        <Link to="/mypage" style={{ textDecoration: "none" }}>
+        </ListItemButton>
+      </Link>
+      <Link to="/mypage" style={{ textDecoration: 'none', color: 'inherit' }}>
+        <ListItemButton>
           <ListItemText primary="마이페이지" />
-        </Link>
-      </ListItemButton>
-      <ListItemButton>
-        <Link to="/aboutus" style={{ textDecoration: "none" }}>
+        </ListItemButton>
+      </Link>
+      <Link to="/aboutus" style={{ textDecoration: 'none', color: 'inherit' }}>
+        <ListItemButton>
           <ListItemText primary="About Us" />
-        </Link>
-      </ListItemButton>
+        </ListItemButton>
+      </Link>
     </List>
   );
 }

@@ -5,20 +5,22 @@ import {
   Typography,
   Stack,
   Dialog,
-} from "@mui/material";
-import Side from "./sidevarList";
-import Main from "./main";
-import Review from "../reviewPage/index";
-import SignUp from "../authentication/sign-up/index";
-import Login from "../authentication/login";
-import Survey from "../survey";
-import Mypage from "../mypage";
-import AboutUs from "../aboutus";
+} from '@mui/material';
+import Side from './sidevarList';
+import Main from './main';
+import Review from '../reviewPage/index';
+import SignUp from '../authentication/sign-up/index';
+import Login from '../authentication/login';
+import Survey from '../survey';
+import Mypage from '../mypage';
+import AboutUs from '../aboutus';
+import SurveyResult from '../board/surveyResult';
+import MyReview from '../board/myReview';
 
-import { Link } from "react-router-dom";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { useState } from "react";
-import { useEffect } from "react";
+import { Link } from 'react-router-dom';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { useState } from 'react';
+import { useEffect } from 'react';
 
 // const getAllUser = async () => {
 //   const r = await axios.get("http://localhost:8080/user/all");
@@ -35,18 +37,18 @@ export default function Dashboard() {
   };
 
   const [isLogin, setIsLogin] = useState(
-    sessionStorage.getItem("userPk") !== null // 로그인상태가아니면 userPk가 null = true , 로그인하면 userPk가 null 이 아님 false
+    sessionStorage.getItem('userPk') !== null // 로그인상태가아니면 userPk가 null = true , 로그인하면 userPk가 null 이 아님 false
   );
   const handelIsLogin = () => {
     setIsLogin(true);
   };
 
-  const [userName, setUserName] = useState("");
+  const [userName, setUserName] = useState('');
   const getUserName = () => {
-    setUserName(sessionStorage.getItem("userName"));
+    setUserName(sessionStorage.getItem('userName'));
   };
 
-  const [removeMyInfo, setRemoveMyInfo] = useState("");
+  const [removeMyInfo, setRemoveMyInfo] = useState('');
   const removeMyInfoResult = () => {
     setRemoveMyInfo(sessionStorage.clear());
   };
@@ -61,10 +63,10 @@ export default function Dashboard() {
         <>
           <Button disabled>{userName}님</Button>
 
-          <Link to="/" style={{ textDecoration: "none" }}>
+          <Link to="/" style={{ textDecoration: 'none' }}>
             <Button
               disableRipple
-              sx={{ color: "text.secondary" }}
+              sx={{ color: 'text.secondary' }}
               onClick={() => {
                 setIsLogin(false);
                 removeMyInfoResult();
@@ -84,7 +86,7 @@ export default function Dashboard() {
           <Dialog open={open} onClose={handleClose}>
             <Login clickLoginBtn={handleClose} LoginSuccess={handelIsLogin} />
           </Dialog>
-          <Link to="signup" style={{ textDecoration: "none" }}>
+          <Link to="signup" style={{ textDecoration: 'none' }}>
             <Button disableRipple>회원가입</Button>
           </Link>
         </>
@@ -94,10 +96,10 @@ export default function Dashboard() {
 
   return (
     <BrowserRouter>
-      <AppBar position="absolute" padding="0" sx={{ bgcolor: "white" }}>
+      <AppBar position="absolute" padding="0" sx={{ bgcolor: 'white' }}>
         <Toolbar>
           <Side />
-          <Link to="/" style={{ textDecoration: "none", flexGrow: 1 }}>
+          <Link to="/" style={{ textDecoration: 'none', flexGrow: 1 }}>
             <Typography color="primary" variant="h6">
               home
             </Typography>
@@ -114,6 +116,8 @@ export default function Dashboard() {
         <Route path="/surver" element={<Survey />}></Route>
         <Route path="/mypage" element={<Mypage />}></Route>
         <Route path="/aboutus" element={<AboutUs />}></Route>
+        <Route path="/surveyResult" element={<SurveyResult />}></Route>
+        <Route path="/myreview" element={<MyReview />}></Route>
       </Routes>
     </BrowserRouter>
   );
