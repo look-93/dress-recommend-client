@@ -16,22 +16,23 @@ import { DateRangeSharp } from '@mui/icons-material';
 export default function SurveyResult() {
   const [datas, setDatas] = useState([]);
 
+  const upk = sessionStorage.getItem('userPk');
   const getMyResultByPk = async () => {
-    const upk = sessionStorage.getItem('userPk');
     const results = await axios.get(
       'http://127.0.0.1:8080/review/myresult/' + upk
     );
-    console.log(results);
+    //console.log(results);
     setDatas(results.data);
   };
 
-  // const deleteSurveyMyResult = async () => {
-  //   const dataRpk = await axios.delete(
-  //     'http://127.0.0.1:8080/review/deleteSurveyMyResult/' + datas.rpk
-  //   );
+  const deleteMyResultByPk = async (props) => {
+    const dataRpk = await axios.delete(
+      'http://127.0.0.1:8080/review/deleteMyResultByPk/' + props
+    );
 
-  //   console.log(dataRpk);
-  // };
+    console.log(dataRpk);
+    window.location.replace('/surveyResult');
+  };
 
   useEffect(() => {
     getMyResultByPk();
@@ -52,7 +53,12 @@ export default function SurveyResult() {
               >
                 <Grid item sx={{ display: 'flex' }}>
                   <CardHeader title={data.uid} subheader={data.createDate} />
-                  <IconButton disableRipple>
+                  <IconButton
+                    disableRipple
+                    onClick={() => {
+                      deleteMyResultByPk(data.rpk);
+                    }}
+                  >
                     <CloseIcon />
                   </IconButton>
                 </Grid>

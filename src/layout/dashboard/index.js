@@ -100,8 +100,8 @@ export default function Dashboard() {
         <Toolbar>
           <Side />
           <Link to="/" style={{ textDecoration: 'none', flexGrow: 1 }}>
-            <Typography color="primary" variant="h6">
-              home
+            <Typography color="primary" variant="h6" align="center">
+              LookWearFashion
             </Typography>
           </Link>
           <Stack direction="row" sapcing={2}>
