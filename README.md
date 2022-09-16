@@ -18,6 +18,23 @@ npm i styled-components --force
 
 npm install react-bootstrap bootstrap --force
 
+create table user (
+u_pk int(11) not null auto_increment primary key,
+u_id varchar(100) not null,
+u_password varchar(100) not null,
+u_name varchar(30) not null,
+u_email varchar(200) not null,
+u_phon varchar(11) not null,
+u_gender char(1) not null,
+u_post_code int(11) not null,
+u_adress_1 varchar(200) not null,
+u_adress_2 varchar(200) not null,
+u_deleteyn char(1) not null,
+u_create_date datetime,
+u_delete_date datetime,
+u_pwd_change_date datetime
+);
+
 create table dress.review(
 r_pk int(11) not null AUTO_INCREMENT primary key,
 img_url varchar(200) not null,

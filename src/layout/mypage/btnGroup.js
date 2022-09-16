@@ -16,13 +16,13 @@ import {
   IconButton,
   Stack,
   Item,
-} from "@mui/material";
-import axios from "axios";
-import { useEffect, useState, React } from "react";
-import { Link } from "react-router-dom";
-import ModeEditOutlinedIcon from "@mui/icons-material/ModeEditOutlined";
-import ViewCompactAltOutlinedIcon from "@mui/icons-material/ViewCompactAltOutlined";
-import CloseIcon from "@mui/icons-material/Close";
+} from '@mui/material';
+import axios from 'axios';
+import { useEffect, useState, React } from 'react';
+import { Link } from 'react-router-dom';
+import ModeEditOutlinedIcon from '@mui/icons-material/ModeEditOutlined';
+import ViewCompactAltOutlinedIcon from '@mui/icons-material/ViewCompactAltOutlined';
+import CloseIcon from '@mui/icons-material/Close';
 
 export default function BtnGroup() {
   const [open, setOpen] = useState(false);
@@ -39,9 +39,9 @@ export default function BtnGroup() {
   const [datas1, setDatas1] = useState([]);
 
   const getMyReviewByPk = async () => {
-    const upk = sessionStorage.getItem("userPk");
+    const upk = sessionStorage.getItem('userPk');
     const results = await axios.get(
-      "http://127.0.0.1:8080/review/myreview/" + upk
+      'http://127.0.0.1:8080/review/myresult/' + upk
     );
     console.log(results);
     setDatas(results.data);
@@ -52,13 +52,13 @@ export default function BtnGroup() {
   }, []);
 
   return (
-    <Box sx={{ display: "flex" }} justifyContent="center">
+    <Box sx={{ display: 'flex' }} justifyContent="center">
       <Stack
-        direction={{ sm: "row" }}
+        direction={{ sm: 'row' }}
         spacing={{ xs: 1, sm: 2, md: 4 }}
         sx={{ mt: 5, mb: 10 }}
       >
-        <Link to="/surveyResult" style={{ textDecoration: "none" }}>
+        <Link to="/surveyResult" style={{ textDecoration: 'none' }}>
           <Button
             variant="outlined"
             sx={{ p: 4, width: 300, height: 150 }}

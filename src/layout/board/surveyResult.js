@@ -6,42 +6,51 @@ import {
   Box,
   IconButton,
   Button,
-} from "@mui/material";
-import axios from "axios";
-import { useEffect, useState, React } from "react";
-import CloseIcon from "@mui/icons-material/Close";
-import { Link } from "react-router-dom";
+} from '@mui/material';
+import axios from 'axios';
+import { useEffect, useState, React } from 'react';
+import CloseIcon from '@mui/icons-material/Close';
+import { Link } from 'react-router-dom';
+import { DateRangeSharp } from '@mui/icons-material';
 
 export default function SurveyResult() {
   const [datas, setDatas] = useState([]);
 
-  const getMyReviewByPk = async () => {
-    const upk = sessionStorage.getItem("userPk");
+  const getMyResultByPk = async () => {
+    const upk = sessionStorage.getItem('userPk');
     const results = await axios.get(
-      "http://127.0.0.1:8080/review/myreview/" + upk
+      'http://127.0.0.1:8080/review/myresult/' + upk
     );
     console.log(results);
     setDatas(results.data);
   };
 
+  // const deleteSurveyMyResult = async () => {
+  //   const dataRpk = await axios.delete(
+  //     'http://127.0.0.1:8080/review/deleteSurveyMyResult/' + datas.rpk
+  //   );
+
+  //   console.log(dataRpk);
+  // };
+
   useEffect(() => {
-    getMyReviewByPk();
+    getMyResultByPk();
   }, []);
 
   return (
-    <Box sx={{ display: "flex" }}>
+    <Box sx={{ display: 'flex' }}>
       <Box sx={{ flexGrow: 1 }} mt={20}>
         <Grid container spacing={{ xs: 6, md: 3 }} justifyContent="center">
           {datas.map((data) => (
-            <Grid item key={data.upk}>
+            <Grid item key={data.rpk}>
               <Card
                 sx={{
-                  height: "100%",
-                  display: "flex",
-                  flexDirection: "column",
+                  height: '100%',
+                  display: 'flex',
+                  flexDirection: 'column',
                 }}
               >
-                <Grid item sx={{ display: "flex" }}>
+                <Grid item sx={{ display: 'flex' }}>
                   <CardHeader title={data.uid} subheader={data.createDate} />
                   <IconButton disableRipple>
                     <CloseIcon />
@@ -54,7 +63,7 @@ export default function SurveyResult() {
                   image={data.imgUrl}
                   alt="unsplash image"
                 />
-                <Link to="/myreview" style={{ textDecoration: "none" }}>
+                <Link to="/myreview" style={{ textDecoration: 'none' }}>
                   <Button disableRipple fullWidth>
                     리뷰쓰기
                   </Button>

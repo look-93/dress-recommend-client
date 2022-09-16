@@ -26,10 +26,6 @@ export default function Login(props) {
 
   //비동기 함수인데 동기스럽게 쓰기위해서 await를 씀
   const login = async () => {
-    if (userId === '') {
-      alert('아이디를 입력하세요');
-      return;
-    }
     if (userPwd === '') {
       alert('비밀번호를 입력하세요');
       return;
