@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState } from "react";
 import {
   Container,
   Button,
@@ -11,18 +11,18 @@ import {
   Box,
   SwipeableDrawer,
   Typography,
-} from '@mui/material';
-import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
-import ReviewDetail from './reviewDetail';
-import styled from 'styled-components';
-import axios from 'axios';
+} from "@mui/material";
+import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
+import ReviewDetail from "./reviewDetail";
+import styled from "styled-components";
+import axios from "axios";
 
 export default function Review() {
   const [datas, setDatas] = useState([]);
 
   const allReview = async () => {
-    const results = await axios.get('http://localhost:8080/review/all/');
-    //console.log(results);
+    const results = await axios.get("http://localhost:8080/review/all/");
+    console.log(results);
     setDatas(results.data);
   };
   useEffect(() => {
@@ -56,7 +56,7 @@ export default function Review() {
     <Container sx={{ py: 15 }} maxWidth="md">
       <Top
         onClick={() => {
-          window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
+          window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
         }}
       >
         위로 가기
@@ -66,16 +66,24 @@ export default function Review() {
           <Grid item key={index} xs={12} sm={6} md={4}>
             <Card
               sx={{
-                height: '100%',
-                display: 'flex',
-                flexDirection: 'column',
+                height: "100%",
+                display: "flex",
+                flexDirection: "column",
               }}
             >
               <CardHeader title={data.uid} subheader={data.createDate} />
               <CardMedia
                 component="img"
-                height="300"
-                image={data.imgUrl}
+                height="150"
+                sx={{ objectFit: "contain" }}
+                image={data.topImgUrl}
+                alt="unsplash image"
+              />
+              <CardMedia
+                component="img"
+                height="150"
+                sx={{ objectFit: "contain" }}
+                image={data.bottomImgUrl}
                 alt="unsplash image"
               />
               <Typography autoFocus variant="body2">
@@ -102,7 +110,7 @@ export default function Review() {
             </Card>
           </Grid>
         ))}
-        <Box sx={{ width: 'auto' }} role="presentation">
+        <Box sx={{ width: "auto" }} role="presentation">
           <SwipeableDrawer
             anchor="bottom"
             open={open}
