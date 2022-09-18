@@ -8,7 +8,7 @@ import {
 } from "@mui/material";
 import Side from "./sidevarList";
 import Main from "./main";
-import Review from "../reviewPage/index";
+import RecommendReview from "../reviewPage/index";
 import SignUp from "../authentication/sign-up/index";
 import Login from "../authentication/login";
 import Survey from "../survey";
@@ -16,6 +16,7 @@ import Mypage from "../mypage";
 import AboutUs from "../aboutus";
 import SurveyResult from "../board/surveyResult";
 import MyReview from "../board/myReview";
+import Realreview from "../reviewPage/realReview";
 
 import { Link } from "react-router-dom";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
@@ -111,13 +112,14 @@ export default function Dashboard() {
       </AppBar>
       <Routes>
         <Route path="/" element={<Main />}></Route>
-        <Route path="/review" element={<Review />}></Route>
+        <Route path="/recommendreview" element={<RecommendReview />}></Route>
         <Route path="/signup" element={<SignUp />}></Route>
         <Route path="/surver" element={<Survey />}></Route>
         <Route path="/mypage" element={<Mypage />}></Route>
         <Route path="/aboutus" element={<AboutUs />}></Route>
         <Route path="/surveyResult" element={<SurveyResult />}></Route>
-        <Route path="/myreview" element={<MyReview />}></Route>
+        <Route path="/myreview/:rPk" element={<MyReview />}></Route>
+        <Route path="/realreview" element={<Realreview />}></Route>
       </Routes>
     </BrowserRouter>
   );

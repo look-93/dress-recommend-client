@@ -11,17 +11,21 @@ import {
   Box,
   SwipeableDrawer,
   Typography,
+  Stack,
 } from "@mui/material";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import ReviewDetail from "./reviewDetail";
+import RealReviewDetail from "./realReviewDetail";
 import styled from "styled-components";
 import axios from "axios";
 
-export default function RecommendReview() {
+export default function Realreview() {
   const [datas, setDatas] = useState([]);
 
   const allReview = async () => {
-    const results = await axios.get("http://localhost:8080/review/all/");
+    const results = await axios.get(
+      "http://localhost:8080/review/allUsedReview/"
+    );
     console.log(results);
     setDatas(results.data);
   };
@@ -38,6 +42,14 @@ export default function RecommendReview() {
   };
   const onClickCloseHandler = () => {
     setOpen(false);
+  };
+
+  const [realOpen, setRealOpen] = useState(false);
+  const onClickRealReview = () => {
+    setRealOpen(true);
+  };
+  const onClickCloseRealReview = () => {
+    setRealOpen(false);
   };
 
   const Top = styled.button`
@@ -71,30 +83,34 @@ export default function RecommendReview() {
                 flexDirection: "column",
               }}
             >
-              <CardHeader title={data.uid} subheader={data.createDate} />
+              <CardHeader title={data.title} subheader={data.createDate} />
               <CardMedia
                 component="img"
                 height="150"
                 sx={{ objectFit: "contain" }}
-                image={data.topImgUrl}
+                image={data.fileUrl}
                 alt="unsplash image"
               />
-              <CardMedia
-                component="img"
-                height="150"
-                sx={{ objectFit: "contain" }}
-                image={data.bottomImgUrl}
-                alt="unsplash image"
-              />
+
               <Typography autoFocus variant="body2">
                 {data.content}
               </Typography>
 
-              {/* <Grid item>
+              <Grid item>
                 <IconButton>
                   <FavoriteBorderIcon />
                 </IconButton>
-                <CardActions>
+                <Stack direction="row">
+                  <Button
+                    sx={{ flexGrow: 1 }}
+                    size="small"
+                    onClick={() => {
+                      onClickRealReview();
+                      setSelectedPk(data.rpk);
+                    }}
+                  >
+                    리뷰
+                  </Button>
                   <Button
                     sx={{ flexGrow: 1 }}
                     size="small"
@@ -103,14 +119,14 @@ export default function RecommendReview() {
                       setSelectedPk(data.rpk);
                     }}
                   >
-                    View
+                    추천결과
                   </Button>
-                </CardActions>
-              </Grid> */}
+                </Stack>
+              </Grid>
             </Card>
           </Grid>
         ))}
-        {/* <Box sx={{ width: "auto" }} role="presentation">
+        <Box sx={{ width: "auto" }} role="presentation">
           <SwipeableDrawer
             anchor="bottom"
             open={open}
@@ -119,7 +135,17 @@ export default function RecommendReview() {
           >
             <ReviewDetail rPk={selectedPk} />
           </SwipeableDrawer>
-        </Box> */}
+        </Box>
+        <Box sx={{ width: "auto" }} role="presentation">
+          <SwipeableDrawer
+            anchor="bottom"
+            open={realOpen}
+            onOpen={onClickRealReview}
+            onClose={onClickCloseRealReview}
+          >
+            <RealReviewDetail rPk={selectedPk} />
+          </SwipeableDrawer>
+        </Box>
       </Grid>
     </Container>
   );

@@ -52,3 +52,13 @@ create_date datetime not null,
 constraint FK_user_comment FOREIGN KEY (u_pk) REFERENCES user(u_pk),
 constraint FK_review_comment FOREIGN KEY (r_pk) REFERENCES review(r_pk)
 );
+
+create table used_review(
+ur_pk int(11) not null auto_increment primary key,
+contents text not null,
+rating char(1) not null,
+file_url varchar(200) not null,
+title varchar(50) not null,
+r_pk int(11) not null,
+constraint fk_used_review_review foreign key(r_pk) references dress.review(r_pk)
+)

@@ -56,6 +56,7 @@ export default function Survey() {
 
   const handelClickOpen = async () => {
     onLoadingOpen();
+    console.log(gender);
     const results = await axios.get(
       "http://localhost:8080/rec/" +
         (gender === "F" ? "woman" : "man") +

@@ -11,8 +11,9 @@ import {
 } from "@mui/material";
 import axios from "axios";
 import { useEffect, useState } from "react";
+import ReviewMessage from "./reviewMessage";
 
-export default function ReviewDetail(props) {
+export default function RealReviewDetail(props) {
   //console.log(props.rPk);
   const [reviewPkData, setReviewPkData] = useState([]);
   const getReviewByPk = async () => {
@@ -30,29 +31,32 @@ export default function ReviewDetail(props) {
   //
   return (
     <Container maxWidth="md" component="main">
-      <Grid
-        container
-        spacing={2}
-        columns={16}
-        sx={{ margin: 5, justifyContent: "center" }}
-      >
+      <Grid container spacing={2} columns={16} sx={{ margin: 5 }}>
         <Grid item xs={8}>
           <Card sx={{ width: 330 }}>
             <CardMedia
               component="img"
-              height="200"
+              height="250"
               sx={{ objectFit: "contain" }}
               image={reviewPkData.topImgUrl}
               alt="unsplash image"
             />
             <CardMedia
               component="img"
-              height="200"
+              height="250"
               sx={{ objectFit: "contain" }}
               image={reviewPkData.bottomImgUrl}
               alt="unsplash image"
             />
           </Card>
+        </Grid>
+        <Grid item xs={8}>
+          <Typography variant="body2">{reviewPkData.createDate}</Typography>
+          <Typography variant="body2">
+            내 한줄평: {reviewPkData.content}
+          </Typography>
+
+          <ReviewMessage />
         </Grid>
       </Grid>
     </Container>

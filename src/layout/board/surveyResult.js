@@ -76,7 +76,10 @@ export default function SurveyResult() {
                   sx={{ objectFit: "contain" }}
                   alt="unsplash image"
                 />
-                <Link to="/myreview" style={{ textDecoration: "none" }}>
+                <Link
+                  to={"/myreview/" + data.rpk}
+                  style={{ textDecoration: "none" }}
+                >
                   <Button disableRipple fullWidth>
                     리뷰쓰기
                   </Button>
