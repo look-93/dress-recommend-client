@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState } from 'react';
 import {
   Container,
   Button,
@@ -12,19 +12,19 @@ import {
   SwipeableDrawer,
   Typography,
   Stack,
-} from "@mui/material";
-import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
-import ReviewDetail from "./reviewDetail";
-import RealReviewDetail from "./realReviewDetail";
-import styled from "styled-components";
-import axios from "axios";
+} from '@mui/material';
+import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
+import ReviewDetail from './reviewDetail';
+import RealReviewDetail from './realReviewDetail';
+import styled from 'styled-components';
+import axios from 'axios';
 
 export default function Realreview() {
   const [datas, setDatas] = useState([]);
 
   const allReview = async () => {
     const results = await axios.get(
-      "http://localhost:8080/review/allUsedReview/"
+      'http://localhost:8080/review/allUsedReview/'
     );
     console.log(results);
     setDatas(results.data);
@@ -68,7 +68,7 @@ export default function Realreview() {
     <Container sx={{ py: 15 }} maxWidth="md">
       <Top
         onClick={() => {
-          window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+          window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
         }}
       >
         위로 가기
@@ -78,18 +78,18 @@ export default function Realreview() {
           <Grid item key={index} xs={12} sm={6} md={4}>
             <Card
               sx={{
-                height: "100%",
-                display: "flex",
-                flexDirection: "column",
+                height: '100%',
+                display: 'flex',
+                flexDirection: 'column',
               }}
             >
-              <CardHeader title={data.title} subheader={data.createDate} />
+              <CardHeader title={data.uid} subheader={data.createDate} />
               <CardMedia
                 component="img"
                 height="150"
-                sx={{ objectFit: "contain" }}
+                sx={{ objectFit: 'contain' }}
                 image={data.fileUrl}
-                alt="unsplash image"
+                alt="이미지파일"
               />
 
               <Typography autoFocus variant="body2">
@@ -126,7 +126,7 @@ export default function Realreview() {
             </Card>
           </Grid>
         ))}
-        <Box sx={{ width: "auto" }} role="presentation">
+        <Box sx={{ width: 'auto' }} role="presentation">
           <SwipeableDrawer
             anchor="bottom"
             open={open}
@@ -136,7 +136,7 @@ export default function Realreview() {
             <ReviewDetail rPk={selectedPk} />
           </SwipeableDrawer>
         </Box>
-        <Box sx={{ width: "auto" }} role="presentation">
+        <Box sx={{ width: 'auto' }} role="presentation">
           <SwipeableDrawer
             anchor="bottom"
             open={realOpen}

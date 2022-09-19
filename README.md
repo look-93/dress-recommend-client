@@ -62,3 +62,7 @@ title varchar(50) not null,
 r_pk int(11) not null,
 constraint fk_used_review_review foreign key(r_pk) references dress.review(r_pk)
 )
+
+alter table review rename column tom_img_url to top_img_url;
+
+alter table review add bottom_img_url varchar(200);
