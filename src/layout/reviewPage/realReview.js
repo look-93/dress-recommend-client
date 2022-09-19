@@ -18,8 +18,20 @@ import ReviewDetail from './reviewDetail';
 import RealReviewDetail from './realReviewDetail';
 import styled from 'styled-components';
 import axios from 'axios';
+import ChatIcon from '@mui/icons-material/Chat';
+import GroupIcon from '@mui/icons-material/Group';
+import BuildCircleIcon from '@mui/icons-material/BuildCircle';
+import SpeedDial from '@mui/material/SpeedDial';
+import SpeedDialIcon from '@mui/material/SpeedDialIcon';
+import SpeedDialAction from '@mui/material/SpeedDialAction';
 
 export default function Realreview() {
+  const actions = [
+    { icon: <BuildCircleIcon />, name: '고객센터' },
+    { icon: <GroupIcon />, name: '그룹방' },
+    { icon: <ChatIcon />, name: '친구채팅방' },
+  ];
+
   const [datas, setDatas] = useState([]);
 
   const allReview = async () => {
@@ -54,8 +66,8 @@ export default function Realreview() {
 
   const Top = styled.button`
     position: fixed;
-    bottom: 5%;
-    right: 2rem;
+    bottom: 3%;
+    right: 5rem;
 
     background-color: gray;
     color: white;
@@ -147,6 +159,19 @@ export default function Realreview() {
           </SwipeableDrawer>
         </Box>
       </Grid>
+      <SpeedDial
+        ariaLabel="For chating"
+        sx={{ position: 'fixed', bottom: 16, right: 16 }}
+        icon={<SpeedDialIcon />}
+      >
+        {actions.map((action) => (
+          <SpeedDialAction
+            key={action.name}
+            icon={action.icon}
+            tooltipTitle={action.name}
+          />
+        ))}
+      </SpeedDial>
     </Container>
   );
 }
