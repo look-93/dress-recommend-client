@@ -9,9 +9,8 @@ import { Link } from 'react-router-dom';
 
 export default function ListItem() {
   return (
-    <List>
+    <List style={{ height: '650px', position: 'relative' }}>
       <ListSubheader>Menu</ListSubheader>
-
       <Link
         to="/Realreview"
         style={{ textDecoration: 'none', color: 'inherit' }}
@@ -30,6 +29,23 @@ export default function ListItem() {
           <ListItemText primary="About Us" />
         </ListItemButton>
       </Link>
+      <div
+        style={{
+          position: 'fixed',
+          bottom: '0px',
+          backgroundColor: '#343a40',
+          width: '250px',
+        }}
+      >
+        <p style={{ color: 'white' }}>Look Wear Fashion</p>
+        <p style={{ color: 'white', fontSize: 'x-small' }}>
+          서울시 금천구 가산디지털2로 | (010)1234-5678 | abcde@gmail.com
+        </p>
+        <img src="img/2.png" style={{ height: '50px', width: '50px' }} />
+        <img src="img/3.png" style={{ height: '50px', width: '50px' }} />
+        <img src="img/4.png" style={{ height: '50px', width: '50px' }} />
+        <img src="img/5.png" style={{ height: '50px', width: '50px' }} />
+      </div>
     </List>
   );
 }

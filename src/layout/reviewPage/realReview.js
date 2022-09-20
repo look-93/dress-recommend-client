@@ -38,7 +38,7 @@ export default function Realreview() {
     const results = await axios.get(
       'http://localhost:8080/review/allUsedReview/'
     );
-    console.log(results);
+    //console.log(results);
     setDatas(results.data);
   };
   useEffect(() => {

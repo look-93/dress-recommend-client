@@ -15,6 +15,8 @@ import { useState } from 'react';
 import RegistDtail from './registDetail';
 import axios from 'axios';
 import CircularProgress from '@mui/material/CircularProgress';
+import styles from './index.css';
+import LinearProgress from '@mui/material/LinearProgress';
 
 export default function Survey() {
   //option
@@ -109,19 +111,89 @@ export default function Survey() {
 
   return (
     <Box sx={{ pt: 6, pb: 6 }}>
-      <Container maxWidth="lx" sx={{ bgcolor: '#bdbdbd', height: 200 }}>
-        <Typography variant="h4" textAlign="center" sx={{ p: 3 }} gutterBottom>
+      <Container maxWidth="lx" sx={{ height: 200 }}>
+        {/* <Typography variant="h4" textAlign="center" sx={{ p: 3 }} gutterBottom>
           코디 추천
-        </Typography>
-        <Typography variant="body1" textAlign="center" gutterBottom>
-          Something short and leading about the collection below—its contents,
-          the creator, etc. Make it short and sweet, but not too short so folks
-          don't simply skip over it entirely.
-        </Typography>
+        </Typography> */}
+        <div className="contain">
+          <svg
+            viewBox="0 0 1418 150"
+            version="1.1"
+            xmlns="http://www.w3.org/2000/svg"
+            xmlnsXlink="http://www.w3.org/1999/xlink"
+          >
+            <g stroke="none" fill="none" fillRule="evenodd" fillOpacity={0}>
+              <text
+                id="@WebDesignerMag"
+                stroke="#fff"
+                fill="#645F5A"
+                fontWeight="normal"
+                fontFamily="PermanentMarker-Regular, Permanent Marker"
+                fontSize={130}
+              >
+                <tspan x={3} y={115}>
+                  {/*
+                   */}
+                  <tspan>S</tspan>
+                  {/*
+                   */}
+                  <tspan>E</tspan>
+                  {/*
+                   */}
+                  <tspan>L</tspan>
+                  {/*
+                   */}
+                  <tspan>E</tspan>
+                  {/*
+                   */}
+                  <tspan>C</tspan>
+                  {/*
+                   */}
+                  <tspan>T</tspan>
+                  {/*
+                   */}
+                  <tspan>Y</tspan>
+                  {/*
+                   */}
+                  <tspan>O</tspan>
+                  {/*
+                   */}
+                  <tspan>U</tspan>
+                  {/*
+                   */}
+                  <tspan>R</tspan>
+                  {/*
+                   */}
+                  <tspan>F</tspan>
+                  {/*
+                   */}
+                  <tspan>A</tspan>
+                  {/*
+                   */}
+                  <tspan>S</tspan>
+                  {/*
+                   */}
+                  <tspan>H</tspan>
+                  {/*
+                   */}
+                  <tspan>I</tspan>
+                  {/*
+                   */}
+                  <tspan>O</tspan>
+                  {/*
+                   */}
+                  <tspan>N</tspan>
+                  {/*
+                   */}
+                </tspan>
+              </text>
+            </g>
+          </svg>
+        </div>
       </Container>
 
-      <Container sx={{ py: 8 }} maxWidth="lg">
-        <Box sx={{ mb: 3 }}>
+      <Container sx={{ py: 29 }} maxWidth="lg">
+        <Box sx={{ mb: 1 }}>
           <Typography variant="h5" align="center">
             성별
           </Typography>
@@ -150,16 +222,12 @@ export default function Survey() {
         </Box>
         <Divider />
         <SelectOption type={'상의'} />
+        <Divider />
         <SelectOption type={'하의'} />
       </Container>
 
       <Stack alignItems="center">
-        <Button
-          size="large"
-          variant="contained"
-          sx={{ mt: 5 }}
-          onClick={handelClickOpen}
-        >
+        <Button size="large" variant="contained" onClick={handelClickOpen}>
           결과확인
         </Button>
 

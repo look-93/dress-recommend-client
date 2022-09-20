@@ -14,6 +14,7 @@ import { Link } from 'react-router-dom';
 
 export default function SurveyResult() {
   const [datas, setDatas] = useState([]);
+  //console.log(datas);
 
   const upk = sessionStorage.getItem('userPk');
   const getMyResultByPk = async () => {
