@@ -14,21 +14,28 @@ import { useEffect, useState } from 'react';
 import ReviewMessage from './reviewMessage';
 
 export default function RealReviewDetail(props) {
-  //console.log(props.rPk);
+  //console.log(props.urPk);
   const [reviewPkData, setReviewPkData] = useState([]);
   const getReviewByPk = async () => {
     const reviewByPkResult = await axios.get(
-      'http://127.0.0.1:8080/allUsedReview/' + props.rPk
+      'http://127.0.0.1:8080/review/getUsedReviewByPk/' + props.urPk
     );
     //console.log(reviewByPkResult);
     setReviewPkData(reviewByPkResult.data);
   };
 
+  // const starRating = () => {
+  //   const rating = reviewPkData.rating;
+  //   for (let i = 0; rating; i++) {
+  //     console.log('*');
+  //   }
+  // };
+
   useEffect(() => {
     //console.log(props.rPk);
     getReviewByPk();
   }, []);
-  //
+
   return (
     <Container maxWidth="md" component="main">
       <Grid container spacing={2} columns={16} sx={{ margin: 5 }}>
@@ -38,22 +45,19 @@ export default function RealReviewDetail(props) {
               component="img"
               height="250"
               sx={{ objectFit: 'contain' }}
-              image={reviewPkData.topImgUrl}
-              alt="unsplash image"
-            />
-            <CardMedia
-              component="img"
-              height="250"
-              sx={{ objectFit: 'contain' }}
-              image={reviewPkData.bottomImgUrl}
+              image={reviewPkData.fileUrl}
               alt="unsplash image"
             />
           </Card>
         </Grid>
         <Grid item xs={8}>
           <Typography variant="body2">{reviewPkData.createDate}</Typography>
+          <Typography variant="body2">제목: {reviewPkData.title}</Typography>
           <Typography variant="body2">
             내 평가: {reviewPkData.contents}
+          </Typography>
+          <Typography variant="body2">
+            내 별점: {reviewPkData.rating}
           </Typography>
 
           <ReviewMessage />

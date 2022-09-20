@@ -47,6 +47,7 @@ export default function Realreview() {
 
   //선택된 pk를 담기위한 useState
   const [selectedPk, setSelectedPk] = useState(0);
+  const [selectedRealReviewPk, setSelectedRealReviewPk] = useState(0);
 
   const [open, setOpen] = useState(false);
   const onClickHandler = () => {
@@ -118,7 +119,7 @@ export default function Realreview() {
                     size="small"
                     onClick={() => {
                       onClickRealReview();
-                      setSelectedPk(data.rpk);
+                      setSelectedRealReviewPk(data.urPk);
                     }}
                   >
                     리뷰
@@ -141,21 +142,21 @@ export default function Realreview() {
         <Box sx={{ width: 'auto' }} role="presentation">
           <SwipeableDrawer
             anchor="bottom"
-            open={open}
-            onOpen={onClickHandler}
-            onClose={onClickCloseHandler}
+            open={realOpen}
+            onOpen={onClickRealReview}
+            onClose={onClickCloseRealReview}
           >
-            <ReviewDetail rPk={selectedPk} />
+            <RealReviewDetail urPk={selectedRealReviewPk} />
           </SwipeableDrawer>
         </Box>
         <Box sx={{ width: 'auto' }} role="presentation">
           <SwipeableDrawer
             anchor="bottom"
-            open={realOpen}
-            onOpen={onClickRealReview}
-            onClose={onClickCloseRealReview}
+            open={open}
+            onOpen={onClickHandler}
+            onClose={onClickCloseHandler}
           >
-            <RealReviewDetail rPk={selectedPk} />
+            <ReviewDetail rPk={selectedPk} />
           </SwipeableDrawer>
         </Box>
       </Grid>
