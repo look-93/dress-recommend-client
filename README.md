@@ -37,7 +37,8 @@ u_pwd_change_date datetime
 
 create table dress.review(
 r_pk int(11) not null AUTO_INCREMENT primary key,
-img_url varchar(200) not null,
+tom_img_url varchar(200) not null,
+bottom_img_url varchar(200) not null,
 create_date datetime not null,
 u_pk int(11) not null,
 constraint fk_user_review foreign key(u_pk) references dress.user(u_pk)
@@ -62,7 +63,3 @@ title varchar(50) not null,
 r_pk int(11) not null,
 constraint fk_used_review_review foreign key(r_pk) references dress.review(r_pk)
 )
-
-alter table review rename column tom_img_url to top_img_url;
-
-alter table review add bottom_img_url varchar(200);

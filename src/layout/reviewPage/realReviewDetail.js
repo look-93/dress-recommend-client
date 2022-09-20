@@ -8,17 +8,17 @@ import {
   Stack,
   Button,
   Typography,
-} from '@mui/material';
-import axios from 'axios';
-import { useEffect, useState } from 'react';
-import ReviewMessage from './reviewMessage';
+} from "@mui/material";
+import axios from "axios";
+import { useEffect, useState } from "react";
+import ReviewMessage from "./reviewMessage";
 
 export default function RealReviewDetail(props) {
   //console.log(props.urPk);
   const [reviewPkData, setReviewPkData] = useState([]);
   const getReviewByPk = async () => {
     const reviewByPkResult = await axios.get(
-      'http://127.0.0.1:8080/review/getUsedReviewByPk/' + props.urPk
+      "http://127.0.0.1:8080/review/getUsedReviewByPk/" + props.urPk
     );
     //console.log(reviewByPkResult);
     setReviewPkData(reviewByPkResult.data);
@@ -44,14 +44,14 @@ export default function RealReviewDetail(props) {
             <CardMedia
               component="img"
               height="250"
-              sx={{ objectFit: 'contain' }}
+              sx={{ objectFit: "contain" }}
               image={reviewPkData.fileUrl}
               alt="unsplash image"
             />
           </Card>
         </Grid>
         <Grid item xs={8}>
-          <Typography variant="body2">{reviewPkData.createDate}</Typography>
+          <Typography variant="body2">{reviewPkData.urCreateDate}</Typography>
           <Typography variant="body2">제목: {reviewPkData.title}</Typography>
           <Typography variant="body2">
             내 평가: {reviewPkData.contents}
