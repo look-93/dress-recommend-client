@@ -44,8 +44,6 @@ export default function MyReview() {
     setSelectedFile(e.target.files[0]);
   };
 
-  const [rTitle, setRtitle] = useState('');
-
   //******************************************
   //함수호출해서 2일때 호출값 set에 넣어주기
   const getUsedReviewByRpk = async () => {
@@ -53,28 +51,17 @@ export default function MyReview() {
     const result = await axios.get(
       'http://127.0.0.1:8080/review/getUsedReviewByRpk/' + params.rpk
     );
-    const data = () => {
-      setRtitle(result.data.title);
-    };
-    setTile(rTitle);
 
-    // setTile(result.data.title);
-    // setSelectedRatingBtn(result.data.rating);
-
-    // setTile(getUsedReviewByRpkResult.data.title);
-    // setSelectedRatingBtn(getUsedReviewByRpkResult.data.rating);
-    // setContenets(getUsedReviewByRpkResult.data.contents);
-    // const setTileChange = (e) => {
-    //   setTile();
-    // };
-    // const editReview = await axios.post(
-    //   'http://127.0.0.1:8080/review/editReview/'
-    // );
+    setTile(result.data.title);
+    setSelectedRatingBtn(result.data.rating);
+    setContenets(result.data.contents);
   };
 
-  if (params.type === '2') {
-    getUsedReviewByRpk();
-  }
+  useEffect(() => {
+    if (params.type === '2') {
+      getUsedReviewByRpk();
+    }
+  }, []);
 
   const SaveOrEdit = () => {
     if (params.type === '1') {
@@ -98,7 +85,7 @@ export default function MyReview() {
             <Button
               sx={{ width: 200 }}
               variant="contained"
-              onClick={usedReview}
+              onClick={updateReview}
             >
               수정
             </Button>
@@ -108,6 +95,7 @@ export default function MyReview() {
     }
   };
 
+  //1번일때
   const usedReview = async () => {
     if (selectedFile !== '') {
       const data = new FormData();
@@ -125,6 +113,35 @@ export default function MyReview() {
 
       const myReviewResult = await axios.post(
         'http://localhost:8080/review/myReview/',
+        {
+          contents: contents,
+          rating: selectedRatingbtn,
+          fileUrl: fileUrlResult.data,
+          title: title,
+          rpk: params.rpk,
+        }
+      );
+    }
+  };
+
+  //2번일때
+  const updateReview = async () => {
+    if (selectedFile !== '') {
+      const data = new FormData();
+      data.append('imgFile', selectedFile);
+      const fileUrlResult = await axios.post(
+        'http://localhost:8080/util/uploadFile',
+        data,
+        {
+          //서버로 data 보내면서 헤더에 form-data라고 알려주는 역할
+          header: {
+            'Content-Type': 'multipart/form-data',
+          },
+        }
+      );
+
+      const editReview = await axios.post(
+        'http://localhost:8080/review/editReview',
         {
           contents: contents,
           rating: selectedRatingbtn,

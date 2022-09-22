@@ -99,7 +99,7 @@ export default function Realreview() {
               <CardHeader title={data.uid} subheader={data.createDate} />
               <CardMedia
                 component="img"
-                height="150"
+                height="150vn"
                 sx={{ objectFit: 'contain' }}
                 image={data.fileUrl}
                 alt="이미지파일"
