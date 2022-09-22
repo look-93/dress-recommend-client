@@ -26,13 +26,7 @@ u_name varchar(30) not null,
 u_email varchar(200) not null,
 u_phon varchar(11) not null,
 u_gender char(1) not null,
-u_post_code int(11) not null,
-u_adress_1 varchar(200) not null,
-u_adress_2 varchar(200) not null,
-u_deleteyn char(1) not null,
-u_create_date datetime,
-u_delete_date datetime,
-u_pwd_change_date datetime
+u_imgurl varchar(200)
 );
 
 create table dress.review(
@@ -41,6 +35,8 @@ tom_img_url varchar(200) not null,
 bottom_img_url varchar(200) not null,
 create_date datetime not null,
 u_pk int(11) not null,
+modify_date datetime,
+content text,
 constraint fk_user_review foreign key(u_pk) references dress.user(u_pk)
 );
 
@@ -61,5 +57,6 @@ rating char(1) not null,
 file_url varchar(200) not null,
 title varchar(50) not null,
 r_pk int(11) not null,
+ur_create_date varchar(200),
 constraint fk_used_review_review foreign key(r_pk) references dress.review(r_pk)
 )
