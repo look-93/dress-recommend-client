@@ -98,7 +98,9 @@ export default function Profile() {
           variant="outlined"
           onClick={() => {
             profileImg();
-            window.location.replace('/mypage');
+            setTimeout(function () {
+              window.location.replace('/mypage');
+            }, 600);
           }}
         >
           저장
