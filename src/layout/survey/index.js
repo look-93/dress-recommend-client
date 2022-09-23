@@ -192,7 +192,7 @@ export default function Survey() {
         </div>
       </Container>
 
-      <Container sx={{ py: 29 }} maxWidth="lg">
+      <Container sx={{ py: 10 }} maxWidth="lg">
         <Box sx={{ mb: 1 }}>
           <Typography variant="h5" align="center">
             성별

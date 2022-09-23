@@ -18,6 +18,9 @@ npm i styled-components --force
 
 npm install react-bootstrap bootstrap --force
 
+npm install --save swiper --force
+
+npm install --save sass --force
 create table user (
 u_pk int(11) not null auto_increment primary key,
 u_id varchar(100) not null,
