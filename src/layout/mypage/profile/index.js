@@ -1,11 +1,11 @@
-import * as React from "react";
-import Card from "@mui/material/Card";
-import CardActions from "@mui/material/CardActions";
-import Button from "@mui/material/Button";
-import { Avatar } from "@mui/material";
-import { useState, useRef } from "react";
-import { useParams } from "react-router-dom";
-import axios from "axios";
+import * as React from 'react';
+import Card from '@mui/material/Card';
+import CardActions from '@mui/material/CardActions';
+import Button from '@mui/material/Button';
+import { Avatar } from '@mui/material';
+import { useState, useRef } from 'react';
+import { useParams } from 'react-router-dom';
+import axios from 'axios';
 
 export default function Profile() {
   // const params = useParams();
@@ -14,18 +14,18 @@ export default function Profile() {
 
   // 기본이미지 세팅
   const [Image, setImage] = useState(
-    "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png"
+    'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png'
   );
   const fileInput = useRef(null);
   // 이미지 변경
-  const [selectedFile, setSelectedFile] = useState("");
+  const [selectedFile, setSelectedFile] = useState('');
   const onChange = (e) => {
     if (e.target.files[0]) {
       setSelectedFile(e.target.files[0]);
     } else {
       //업로드 취소할 시 기본 이미지로 재설정
       setImage(
-        "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png"
+        'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png'
       );
       return;
     }
@@ -42,28 +42,29 @@ export default function Profile() {
 
   // 이미지 정보 전송
   const profileImg = async () => {
-    if (selectedFile !== "") {
+    if (selectedFile !== '') {
       const data = new FormData();
-      data.append("imgFile", selectedFile);
+      data.append('imgFile', selectedFile);
       const fileUrlResult = await axios.post(
-        "http://localhost:8080/util/uploadProfile/",
+        'http://localhost:8080/util/uploadProfile',
         data,
         {
           //서버로 data 보내면서 헤더에 form-data라고 알려주는 역할
           header: {
-            "Content-Type": "multipart/form-data",
+            'Content-Type': 'multipart/form-data',
           },
         }
       );
       console.log(fileUrlResult);
-      const uPk = sessionStorage.getItem("userPk");
+      const uPk = sessionStorage.getItem('userPk');
       const myReviewResult = await axios.post(
-        "http://localhost:8080/user/updateMyImgInfo/",
+        'http://localhost:8080/user/updateMyImgInfo/',
         {
           uimgUrl: fileUrlResult.data,
           upk: uPk,
         }
       );
+      // console.log(fileUrlResult)
     }
   };
 
@@ -72,7 +73,7 @@ export default function Profile() {
       <Avatar
         alt="Profile"
         src={Image}
-        sx={{ height: "180px", width: "180px", ml: 2, mt: 3, mr: 2 }}
+        sx={{ height: '180px', width: '180px', ml: 2, mt: 3, mr: 2 }}
       />
 
       <CardActions sx={{ ml: 2 }}>
@@ -97,7 +98,7 @@ export default function Profile() {
           variant="outlined"
           onClick={() => {
             profileImg();
-            window.location.replace("/mypage");
+            window.location.replace('/mypage');
           }}
         >
           저장
