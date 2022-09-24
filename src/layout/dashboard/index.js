@@ -5,6 +5,7 @@ import {
   Typography,
   Stack,
   Dialog,
+  Alert,
 } from '@mui/material';
 import Side from './sidevarList';
 import Main from './main';
@@ -18,10 +19,8 @@ import SurveyResult from '../board/surveyResult';
 import MyReview from '../board/myReview';
 import Realreview from '../reviewPage/realReview';
 
-import { Link } from 'react-router-dom';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import { useState } from 'react';
-import { useEffect } from 'react';
+import { BrowserRouter, Routes, Route, Navigate, Link } from 'react-router-dom';
+import { useState, useEffect } from 'react';
 
 // const getAllUser = async () => {
 //   const r = await axios.get("http://localhost:8080/user/all");
@@ -117,15 +116,21 @@ export default function Dashboard() {
         </Toolbar>
       </AppBar>
       <Routes>
-        <Route path="/" element={<Main />}></Route>
-        <Route path="/recommendreview" element={<RecommendReview />}></Route>
-        <Route path="/signup" element={<SignUp />}></Route>
-        <Route path="/surver" element={<Survey />}></Route>
-        <Route path="/mypage" element={<Mypage />}></Route>
-        <Route path="/aboutus" element={<AboutUs />}></Route>
-        <Route path="/surveyResult" element={<SurveyResult />}></Route>
-        <Route path="/myreview/:rpk/:type" element={<MyReview />}></Route>
-        <Route path="/realreview" element={<Realreview />}></Route>
+        <Route path="/" element={<Main />} />
+        <Route path="/recommendreview" element={<RecommendReview />} />
+        <Route path="/signup" element={<SignUp />} />
+        <Route path="/surver" element={<Survey />} />
+        <Route
+          path="/mypage"
+          element={isLogin === false ? <Navigate to="/" /> : <Mypage />}
+        />
+        <Route path="/aboutus" element={<AboutUs />} />
+        <Route path="/surveyResult" element={<SurveyResult />} />
+        <Route path="/myreview/:rpk/:type" element={<MyReview />} />
+        <Route
+          path="/realreview"
+          element={isLogin === false ? <Navigate to="/" /> : <Realreview />}
+        />
       </Routes>
     </BrowserRouter>
   );

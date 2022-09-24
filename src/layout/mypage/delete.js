@@ -5,6 +5,7 @@ import {
   TextField,
   Button,
   Dialog,
+  Stack,
 } from '@mui/material';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
@@ -143,7 +144,6 @@ export default function DeleteMyPage(props) {
             margin="normal"
             required
             fullWidth
-            id="아이디"
             label="아이디"
             autoFocus
             value={userId}
@@ -152,21 +152,37 @@ export default function DeleteMyPage(props) {
           비밀번호
           <TextField
             margin="normal"
+            required
             fullWidth
+            label="비밀번호"
             type="password"
             value={userPwd}
             onChange={onUserPwdHandler}
           />
-          <Button
-            variant="contained"
-            fullWidth
-            sx={{ mt: 1 }}
-            size="large"
-            disableRipple
-            onClick={verification}
+          <Stack
+            direction={{ sm: 'row' }}
+            spacing={{ xs: 1, sm: 1, md: 1 }}
+            mt={1}
           >
-            탈퇴하기
-          </Button>
+            <Button
+              variant="contained"
+              fullWidth
+              size="large"
+              disableRipple
+              onClick={verification}
+            >
+              탈퇴하기
+            </Button>
+            <Button
+              variant="contained"
+              fullWidth
+              size="large"
+              disableRipple
+              onClick={props.closeHandler}
+            >
+              취소
+            </Button>
+          </Stack>
         </Box>
       </Box>
     </Container>

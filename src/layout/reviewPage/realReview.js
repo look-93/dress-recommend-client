@@ -24,6 +24,7 @@ import BuildCircleIcon from '@mui/icons-material/BuildCircle';
 import SpeedDial from '@mui/material/SpeedDial';
 import SpeedDialIcon from '@mui/material/SpeedDialIcon';
 import SpeedDialAction from '@mui/material/SpeedDialAction';
+import StarOutlineIcon from '@mui/icons-material/StarOutline';
 
 export default function Realreview() {
   const actions = [
@@ -68,7 +69,7 @@ export default function Realreview() {
   const Top = styled.button`
     position: fixed;
     bottom: 3%;
-    right: 5rem;
+    right: 1rem;
 
     background-color: gray;
     color: white;
@@ -96,6 +97,9 @@ export default function Realreview() {
                 flexDirection: 'column',
               }}
             >
+              <Stack direction="row-reverse">
+                <StarOutlineIcon />
+              </Stack>
               <CardHeader title={data.uid} subheader={data.createDate} />
               <CardMedia
                 component="img"
@@ -162,7 +166,7 @@ export default function Realreview() {
       </Grid>
       <SpeedDial
         ariaLabel="For chating"
-        sx={{ position: 'fixed', bottom: 16, right: 16 }}
+        sx={{ position: 'fixed', mb: 8, bottom: 16, right: 16 }}
         icon={<SpeedDialIcon />}
       >
         {actions.map((action) => (

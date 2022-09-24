@@ -6,6 +6,8 @@ import {
   MenuItem,
   Button,
   Grid,
+  Stack,
+  Divider,
 } from '@mui/material';
 import { useState } from 'react';
 import axios from 'axios';
@@ -109,6 +111,10 @@ export default function SignUp() {
     navigate('/');
   };
 
+  const back = () => {
+    navigate('/');
+  };
+
   return (
     <Container maxWidth="xs">
       <Box
@@ -178,17 +184,31 @@ export default function SignUp() {
             value={userPh}
             onChange={userPhHandler}
           />
-
-          <Button
-            variant="contained"
-            fullWidth
-            sx={{ mt: 1 }}
-            size="large"
-            disableRipple
-            onClick={registe}
+          <Stack
+            direction={{ sm: 'row' }}
+            spacing={{ xs: 1, sm: 1, md: 1 }}
+            mt={1}
           >
-            가입하기
-          </Button>
+            <Button
+              variant="contained"
+              fullWidth
+              size="large"
+              disableRipple
+              onClick={registe}
+            >
+              가입하기
+            </Button>
+
+            <Button
+              variant="contained"
+              fullWidth
+              size="large"
+              disableRipple
+              onClick={back}
+            >
+              취소
+            </Button>
+          </Stack>
         </Box>
       </Box>
     </Container>

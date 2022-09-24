@@ -3,8 +3,8 @@ import {
   Container,
   Typography,
   TextField,
-  MenuItem,
   Button,
+  Stack,
 } from '@mui/material';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
@@ -12,6 +12,7 @@ import { useNavigate } from 'react-router-dom';
 
 export default function EditMyPage(props) {
   const navigate = useNavigate();
+
   const [user, setUser] = useState('');
 
   const [updatePwd, setUpdatePwd] = useState('');
@@ -71,6 +72,14 @@ export default function EditMyPage(props) {
     editUser();
   }, []);
 
+  // const [open, setOpen] = useState(true);
+  // const close = () => {
+  //   setOpen(false);
+  // };
+  // const onOpen = () => {
+  //   setOpen(true);
+  // };
+
   return (
     <Container maxWidth="xs">
       <Box
@@ -121,16 +130,30 @@ export default function EditMyPage(props) {
             value={updatePh}
             onChange={onUpdatePhHandler}
           />
-          <Button
-            variant="contained"
-            fullWidth
-            sx={{ mt: 1 }}
-            size="large"
-            disableRipple
-            onClick={update}
+          <Stack
+            direction={{ sm: 'row' }}
+            spacing={{ xs: 1, sm: 1, md: 1 }}
+            mt={1}
           >
-            수정하기
-          </Button>
+            <Button
+              variant="contained"
+              fullWidth
+              size="large"
+              disableRipple
+              onClick={update}
+            >
+              수정하기
+            </Button>
+            <Button
+              variant="contained"
+              fullWidth
+              size="large"
+              disableRipple
+              onClick={props.closeHandler}
+            >
+              취소
+            </Button>
+          </Stack>
         </Box>
       </Box>
     </Container>

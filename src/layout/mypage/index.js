@@ -57,7 +57,7 @@ export default function Mypage() {
     setIsProfile(true);
   };
 
-  //아래에서 박스 올라오기 기능
+  //아래에서 박스 올라오기 기능(회원정보 수정)
   const [state, setState] = useState(false);
   const getOpenStateHandler = () => {
     setState(true);
@@ -138,10 +138,10 @@ export default function Mypage() {
               <Button
                 size="small"
                 variant="text"
-                sx={{ mt: 2, ml: 3 }}
+                sx={{ mt: 2, ml: 6 }}
                 onClick={getOpenStateHandler}
               >
-                회원정보 수정하기
+                회원정보수정
               </Button>
             </Grid>
             <Grid item>
