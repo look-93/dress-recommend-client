@@ -21,6 +21,7 @@ npm install react-bootstrap bootstrap --force
 npm install --save swiper --force
 
 npm install --save sass --force
+
 create table user (
 u_pk int(11) not null auto_increment primary key,
 u_id varchar(100) not null,
@@ -34,7 +35,7 @@ u_imgurl varchar(200)
 
 create table dress.review(
 r_pk int(11) not null AUTO_INCREMENT primary key,
-tom_img_url varchar(200) not null,
+top_img_url varchar(200) not null,
 bottom_img_url varchar(200) not null,
 create_date datetime not null,
 u_pk int(11) not null,

@@ -1,4 +1,4 @@
-import * as React from 'react';
+import * as React from "react";
 import {
   Avatar,
   List,
@@ -13,28 +13,28 @@ import {
   SwipeableDrawer,
   Dialog,
   CardMedia,
-} from '@mui/material';
-import AssignmentIndIcon from '@mui/icons-material/AssignmentInd';
-import CallIcon from '@mui/icons-material/Call';
-import PermIdentityIcon from '@mui/icons-material/PermIdentity';
-import EmailIcon from '@mui/icons-material/Email';
-import WcIcon from '@mui/icons-material/Wc';
-import { useState, useRef, useEffect } from 'react';
-import axios from 'axios';
-import EditMyPage from './edit';
-import BtnGroup from './btnGroup';
-import DeleteMyPage from './delete';
-import Badge from '@mui/material/Badge';
-import { styled } from '@mui/material/styles';
-import AddAPhotoIcon from '@mui/icons-material/AddAPhoto';
-import Profile from '../mypage/profile';
+} from "@mui/material";
+import AssignmentIndIcon from "@mui/icons-material/AssignmentInd";
+import CallIcon from "@mui/icons-material/Call";
+import PermIdentityIcon from "@mui/icons-material/PermIdentity";
+import EmailIcon from "@mui/icons-material/Email";
+import WcIcon from "@mui/icons-material/Wc";
+import { useState, useEffect } from "react";
+import axios from "axios";
+import EditMyPage from "./edit";
+import BtnGroup from "./btnGroup";
+import DeleteMyPage from "./delete";
+import Badge from "@mui/material/Badge";
+import { styled } from "@mui/material/styles";
+import AddAPhotoIcon from "@mui/icons-material/AddAPhoto";
+import Profile from "../mypage/profile";
 
 // 프로필 사진 추가 아이콘
 const SmallAddAPhotoIcon = styled(AddAPhotoIcon)(({ theme }) => ({
   width: 40,
   height: 40,
-  borderRadius: '5px',
-  backgroundColor: 'white',
+  borderRadius: "5px",
+  backgroundColor: "white",
 }));
 
 export default function Mypage() {
@@ -50,7 +50,7 @@ export default function Mypage() {
   };
 
   const [isProfile, setIsProfile] = useState(
-    sessionStorage.getItem('userPk') !== null
+    sessionStorage.getItem("userPk") !== null
   );
 
   const handelIsProfile = () => {
@@ -78,8 +78,8 @@ export default function Mypage() {
   const [info, setInfo] = useState([]);
 
   const myInfo = async () => {
-    const upk = sessionStorage.getItem('userPk');
-    const myInfoResult = await axios.get('http://127.0.0.1:8080/user/' + upk);
+    const upk = sessionStorage.getItem("userPk");
+    const myInfoResult = await axios.get("http://127.0.0.1:8080/user/" + upk);
     console.log(myInfoResult);
     setInfo(myInfoResult.data);
   };
@@ -98,15 +98,15 @@ export default function Mypage() {
       >
         My Page
       </Typography>
-      <Box sx={{ display: 'flex' }} justifyContent="center">
+      <Box sx={{ display: "flex" }} justifyContent="center">
         <Grid container maxWidth="sm">
           <Grid item xs={6} sx={{ mt: 5 }}>
             <Badge
               overlap="circular"
-              anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
+              anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
               badgeContent={
                 <SmallAddAPhotoIcon
-                  style={{ cursor: 'pointer' }}
+                  style={{ cursor: "pointer" }}
                   variant="outlined"
                   color="primary"
                   onClick={handleClickOpen}
@@ -124,9 +124,9 @@ export default function Mypage() {
                 alt="프로필"
                 image={info.uimgUrl}
                 sx={{
-                  objectFit: 'contain',
-                  height: '180px',
-                  width: '180px',
+                  objectFit: "contain",
+                  height: "180px",
+                  width: "180px",
                   mt: 4,
                   ml: 2,
                   mt: 3,
@@ -156,7 +156,7 @@ export default function Mypage() {
             </Grid>
           </Grid>
 
-          <Box sx={{ width: 'auto' }} role="presentation">
+          <Box sx={{ width: "auto" }} role="presentation">
             <SwipeableDrawer
               anchor="bottom"
               open={state}
@@ -203,7 +203,7 @@ export default function Mypage() {
                 </ListItemAvatar>
                 <ListItemText
                   primary="성별"
-                  secondary={info.ugender === 'M' ? '남자' : '여자'}
+                  secondary={info.ugender === "M" ? "남자" : "여자"}
                 />
               </ListItem>
               <Divider variant="inset" component="li" />

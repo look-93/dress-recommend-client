@@ -6,19 +6,19 @@ import {
   Button,
   Dialog,
   Stack,
-} from '@mui/material';
-import axios from 'axios';
-import { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
-import Login from '../authentication/login';
+} from "@mui/material";
+import axios from "axios";
+import { useState } from "react";
+import { Link } from "react-router-dom";
+import Login from "../authentication/login";
 
 //DeleteMypage
 export default function DeleteMyPage(props) {
   //upk 정보 보내기
-  const upk = sessionStorage.getItem('userPk');
+  const upk = sessionStorage.getItem("userPk");
   const deleteUser = async () => {
     const deleteUser = await axios.delete(
-      'http://127.0.0.1:8080/user/delete/' + upk
+      "http://127.0.0.1:8080/user/delete/" + upk
     );
   };
   //올라오는 박스 기능 설정
@@ -34,41 +34,41 @@ export default function DeleteMyPage(props) {
   };
   // 로그인 상태가 아니면 userPk가 null = true , 로그인하면 userPk가 null 이 아님 false
   const [isLogin, setIsLogin] = useState(
-    sessionStorage.getItem('userPk') !== null
+    sessionStorage.getItem("userPk") !== null
   );
   //
-  const [userName, setUserName] = useState('');
+  const [userName, setUserName] = useState("");
   const getUserName = () => {
-    setUserName(sessionStorage.getItem('userName'));
+    setUserName(sessionStorage.getItem("userName"));
   };
 
-  const [removeMyInfo, setRemoveMyInfo] = useState('');
+  const [removeMyInfo, setRemoveMyInfo] = useState("");
   const removeMyInfoResult = () => {
     setRemoveMyInfo(sessionStorage.clear());
   };
-  const [userId, setUserId] = useState('');
+  const [userId, setUserId] = useState("");
   const onUserIdHandler = (e) => {
     setUserId(e.target.value);
   };
 
-  const [userPwd, setUserPwd] = useState('');
+  const [userPwd, setUserPwd] = useState("");
   const onUserPwdHandler = (e) => {
     setUserPwd(e.target.value);
   };
 
   //비동기 함수인데 동기스럽게 쓰기위해서 await를 씀
   const verification = async () => {
-    if (userId === '') {
-      alert('아이디를 입력하세요');
+    if (userId === "") {
+      alert("아이디를 입력하세요");
       return;
     }
-    if (userPwd === '') {
-      alert('비밀번호를 입력하세요');
+    if (userPwd === "") {
+      alert("비밀번호를 입력하세요");
       return;
     }
     //메서드는 post, 데이터 전달 형식은 body, 데이터표기법은 json
     try {
-      const result = await axios.post('http://127.0.0.1:8080/user/logIn/', {
+      const result = await axios.post("http://127.0.0.1:8080/user/logIn/", {
         uid: userId,
         upassword: userPwd,
       });
@@ -77,12 +77,12 @@ export default function DeleteMyPage(props) {
       props.closeHandler();
       setIsLogin(false);
       removeMyInfoResult();
-      alert('탈퇴 되었습니다.');
-      window.location.replace('/');
+      alert("탈퇴 되었습니다.");
+      window.location.replace("/");
       //아이디 비밀번호 불일치시
     } catch (e) {
       console.log(e);
-      alert('아이디/비밀번호를 확인하세요!');
+      alert("아이디/비밀번호를 확인하세요!");
     }
   };
   // 로그인 상태 or 로그아웃 상태에서 위에 메뉴바 설정
@@ -92,10 +92,10 @@ export default function DeleteMyPage(props) {
       return (
         <>
           <Button disabled>{userName}님</Button>
-          <Link to="/" style={{ textDecoration: 'none' }}>
+          <Link to="/" style={{ textDecoration: "none" }}>
             <Button
               disableRipple
-              sx={{ color: 'text.secondary' }}
+              sx={{ color: "text.secondary" }}
               onClick={() => {
                 setIsLogin(false);
                 removeMyInfoResult();
@@ -115,7 +115,7 @@ export default function DeleteMyPage(props) {
           <Dialog open={open} onClose={handleClose}>
             <Login clickLoginBtn={handleClose} LoginSuccess={handelIsLogin} />
           </Dialog>
-          <Link to="signup" style={{ textDecoration: 'none' }}>
+          <Link to="signup" style={{ textDecoration: "none" }}>
             <Button disableRipple>회원가입</Button>
           </Link>
         </>
@@ -130,9 +130,9 @@ export default function DeleteMyPage(props) {
         sx={{
           mt: 4,
           mb: 4,
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
         }}
       >
         <Typography component="h1" variant="h5" sx={{ mb: 3 }}>
@@ -160,7 +160,7 @@ export default function DeleteMyPage(props) {
             onChange={onUserPwdHandler}
           />
           <Stack
-            direction={{ sm: 'row' }}
+            direction={{ sm: "row" }}
             spacing={{ xs: 1, sm: 1, md: 1 }}
             mt={1}
           >
