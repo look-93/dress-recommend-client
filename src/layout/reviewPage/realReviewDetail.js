@@ -1,7 +1,7 @@
-import { Container, Grid, Card, CardMedia, Typography } from "@mui/material";
-import axios from "axios";
-import { useEffect, useState } from "react";
-import ReviewMessage from "./reviewMessage";
+import { Container, Grid, Card, CardMedia, Typography } from '@mui/material';
+import axios from 'axios';
+import { useEffect, useState } from 'react';
+import ReviewMessage from './reviewMessage';
 
 export default function RealReviewDetail(props) {
   //console.log(props.urPk);
@@ -9,7 +9,7 @@ export default function RealReviewDetail(props) {
   const [reviewPkData, setReviewPkData] = useState([]);
   const getReviewByPk = async () => {
     const reviewByPkResult = await axios.get(
-      "http://127.0.0.1:8080/review/getUsedReviewByPk/" + props.urPk
+      'http://127.0.0.1:8080/review/getUsedReviewByPk/' + props.urPk
     );
     //console.log(reviewByPkResult);
     setReviewPkData(reviewByPkResult.data);
@@ -34,10 +34,10 @@ export default function RealReviewDetail(props) {
           <Card sx={{ width: 330 }}>
             <CardMedia
               component="img"
-              height="150"
-              sx={{ objectFit: "contain" }}
+              height="300"
+              sx={{ objectFit: 'contain' }}
               image={reviewPkData.fileUrl}
-              alt="unsplash image"
+              alt="이미지파일"
             />
           </Card>
         </Grid>

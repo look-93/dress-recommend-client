@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState } from 'react';
 import {
   Container,
   Button,
@@ -12,52 +12,58 @@ import {
   SwipeableDrawer,
   Typography,
   Stack,
-} from "@mui/material";
-import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
-import ReviewDetail from "./reviewDetail";
-import RealReviewDetail from "./realReviewDetail";
-import styled from "styled-components";
-import axios from "axios";
-import ChatIcon from "@mui/icons-material/Chat";
-import GroupIcon from "@mui/icons-material/Group";
-import BuildCircleIcon from "@mui/icons-material/BuildCircle";
-import SpeedDial from "@mui/material/SpeedDial";
-import SpeedDialIcon from "@mui/material/SpeedDialIcon";
-import SpeedDialAction from "@mui/material/SpeedDialAction";
-import StarOutlineIcon from "@mui/icons-material/StarOutline";
-import StarIcon from "@mui/icons-material/Star";
+} from '@mui/material';
+
+import FavoriteBorder from '@mui/icons-material/FavoriteBorder';
+import Favorite from '@mui/icons-material/Favorite';
+import ReviewDetail from './reviewDetail';
+import RealReviewDetail from './realReviewDetail';
+import styled from 'styled-components';
+import axios from 'axios';
+import ChatIcon from '@mui/icons-material/Chat';
+import GroupIcon from '@mui/icons-material/Group';
+import BuildCircleIcon from '@mui/icons-material/BuildCircle';
+import SpeedDial from '@mui/material/SpeedDial';
+import SpeedDialIcon from '@mui/material/SpeedDialIcon';
+import SpeedDialAction from '@mui/material/SpeedDialAction';
+import StarOutlineIcon from '@mui/icons-material/StarOutline';
+import StarIcon from '@mui/icons-material/Star';
+import { useParams } from 'react-router-dom';
 
 export default function Realreview() {
   const actions = [
-    { icon: <BuildCircleIcon />, name: "고객센터" },
-    { icon: <GroupIcon />, name: "그룹방" },
-    { icon: <ChatIcon />, name: "친구채팅방" },
+    { icon: <BuildCircleIcon />, name: '고객센터' },
+    { icon: <GroupIcon />, name: '그룹방' },
+    { icon: <ChatIcon />, name: '친구채팅방' },
   ];
 
   const [datas, setDatas] = useState([]);
-  const uPk = sessionStorage.getItem("userPk");
+  const [heartCnt, setHreatCnt] = useState(0);
+  const uPk = sessionStorage.getItem('userPk');
 
   const allReview = async () => {
     const results = await axios.get(
       `http://localhost:8080/review/allUsedReview/${uPk}`
     );
     setDatas(results.data);
-    console.log(results.data);
+    //console.log(results.data);
   };
 
   const addStar = async (rPk) => {
     console.log(rPk);
-    await axios.post("http://localhost:8080/review/star/", {
+    await axios.post('http://localhost:8080/review/star/', {
       upk: uPk,
       rpk: rPk,
     });
+
     allReview();
   };
 
   const deleteStar = async (sPk) => {
-    await axios.delete("http://localhost:8080/review/star/" + sPk);
+    await axios.delete('http://localhost:8080/review/star/' + sPk);
     allReview();
   };
+
   useEffect(() => {
     allReview();
   }, []);
@@ -81,6 +87,7 @@ export default function Realreview() {
   const onClickCloseRealReview = () => {
     setRealOpen(false);
   };
+
   const StarBtn = (props) => {
     if (props.isClicked) {
       return (
@@ -105,6 +112,52 @@ export default function Realreview() {
     }
   };
 
+  const addHeart = async (rPk) => {
+    console.log(rPk);
+    await axios.post('http://localhost:8080/review/heart/', {
+      upk: uPk,
+      rpk: rPk,
+    });
+
+    const result = await axios.get(
+      'http://localhost:8080/review/getHeart/' + rPk
+    );
+    console.log(result.data.length);
+    setHreatCnt(result.data.length);
+    allReview();
+  };
+
+  const deleteHeart = async (hPk) => {
+    console.log(hPk);
+    await axios.delete('http://localhost:8080/review/heart/' + hPk);
+
+    allReview();
+  };
+
+  const HeartBtn = (props) => {
+    //console.log(props.rPk);
+    if (props.clicked) {
+      return (
+        <IconButton
+          onClick={() => {
+            deleteHeart(props.hPk);
+          }}
+        >
+          <Favorite color="error" />
+        </IconButton>
+      );
+    } else {
+      return (
+        <IconButton
+          onClick={() => {
+            addHeart(props.rPk);
+          }}
+        >
+          <FavoriteBorder />
+        </IconButton>
+      );
+    }
+  };
   const Top = styled.button`
     position: fixed;
     bottom: 3%;
@@ -121,7 +174,7 @@ export default function Realreview() {
     <Container sx={{ py: 15 }} maxWidth="md">
       <Top
         onClick={() => {
-          window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+          window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
         }}
       >
         위로 가기
@@ -131,9 +184,9 @@ export default function Realreview() {
           <Grid item key={index} xs={12} sm={6} md={4}>
             <Card
               sx={{
-                height: "100%",
-                display: "flex",
-                flexDirection: "column",
+                height: '100%',
+                display: 'flex',
+                flexDirection: 'column',
               }}
             >
               <Stack direction="row-reverse">
@@ -147,7 +200,7 @@ export default function Realreview() {
               <CardMedia
                 component="img"
                 height="150vn"
-                sx={{ objectFit: "contain" }}
+                sx={{ objectFit: 'contain' }}
                 image={data.fileUrl}
                 alt="이미지파일"
               />
@@ -157,9 +210,12 @@ export default function Realreview() {
               </Typography>
 
               <Grid item>
-                <IconButton>
-                  <FavoriteBorderIcon />
-                </IconButton>
+                <HeartBtn
+                  rPk={data.rpk}
+                  hPk={data.hpk}
+                  clicked={data.hpk !== 0}
+                />
+                <Typography variant="button">{heartCnt}</Typography>
                 <Stack direction="row">
                   <Button
                     sx={{ flexGrow: 1 }}
@@ -186,7 +242,7 @@ export default function Realreview() {
             </Card>
           </Grid>
         ))}
-        <Box sx={{ width: "auto" }} role="presentation">
+        <Box sx={{ width: 'auto' }} role="presentation">
           <SwipeableDrawer
             anchor="bottom"
             open={realOpen}
@@ -196,7 +252,7 @@ export default function Realreview() {
             <RealReviewDetail urPk={selectedRealReviewPk} rPk={selectedPk} />
           </SwipeableDrawer>
         </Box>
-        <Box sx={{ width: "auto" }} role="presentation">
+        <Box sx={{ width: 'auto' }} role="presentation">
           <SwipeableDrawer
             anchor="bottom"
             open={open}
@@ -209,7 +265,7 @@ export default function Realreview() {
       </Grid>
       <SpeedDial
         ariaLabel="For chating"
-        sx={{ position: "fixed", mb: 8, bottom: 16, right: 16 }}
+        sx={{ position: 'fixed', mb: 8, bottom: 16, right: 16 }}
         icon={<SpeedDialIcon />}
       >
         {actions.map((action) => (
