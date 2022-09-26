@@ -1,15 +1,15 @@
-import React from 'react';
-import { Container, Card, CardHeader, CardMedia, Grid } from '@mui/material';
+import React from "react";
+import { Container, Card, CardHeader, CardMedia, Grid } from "@mui/material";
 
-import { useState, useEffect } from 'react';
-import axios from 'axios';
+import { useState, useEffect } from "react";
+import axios from "axios";
 
 export default function Star() {
   const [datas, setDatas] = useState([]);
   const allStar = async () => {
-    const uPk = sessionStorage.getItem('userPk');
+    const uPk = sessionStorage.getItem("userPk");
     const getStar = await axios.get(
-      'http://127.0.0.1:8080/review/getAllMyStar/' + uPk
+      "http://127.0.0.1:8080/review/getAllMyStar/" + uPk
     );
     setDatas(getStar.data);
   };
@@ -25,16 +25,16 @@ export default function Star() {
           <Grid item key={index} xs={12} sm={6} md={4}>
             <Card
               sx={{
-                height: '100%',
-                display: 'flex',
-                flexDirection: 'column',
+                height: "100%",
+                display: "flex",
+                flexDirection: "column",
               }}
             >
-              <CardHeader subheader={data.urCreateDate} />
+              <CardHeader title={data.uid} subheader={data.urCreateDate} />
               <CardMedia
                 component="img"
                 height="200"
-                sx={{ objectFit: 'contain' }}
+                sx={{ objectFit: "contain" }}
                 image={data.fileUrl}
                 alt="이미지파일"
               />

@@ -47,11 +47,10 @@ constraint fk_user_review foreign key(u_pk) references dress.user(u_pk)
 create table dress.comment(
 c_pk int(11) not null primary key,
 u_pk int(11) not null,
-r_pk int(11) not null,
 message TEXT not null,
 create_date datetime not null,
 constraint FK_user_comment FOREIGN KEY (u_pk) REFERENCES user(u_pk),
-constraint FK_review_comment FOREIGN KEY (r_pk) REFERENCES review(r_pk)
+constraint FK_COMMENT_UR_PK foreign key (ur_pk) references used_review (ur_pk
 );
 
 create table used_review(
@@ -63,4 +62,20 @@ title varchar(50) not null,
 r_pk int(11) not null,
 ur_create_date varchar(200),
 constraint fk_used_review_review foreign key(r_pk) references dress.review(r_pk)
+)
+
+create table star(
+s_pk int(11) not null auto_increment,
+u_pk int(11) not null,
+r_pk int(11) not null,
+constraint fk_star_user foreign key(u_pk) references dress.user(u_pk),
+constraint fk_star_review foreign key(r_pk) references dress.user(r_pk),
+)
+
+create table heart(
+h_pk int(11) not null auto_increment primary key,
+u_pk int(11) not null,
+r_pk int(11) not null,
+constraint fk_heart_user foreign key(u_pk) references dress.user(u_pk),
+constraint fk_heart_review foreign key(r_pk) references dress.review(r_pk)
 )
