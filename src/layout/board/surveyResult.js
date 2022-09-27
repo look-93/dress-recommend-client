@@ -96,6 +96,9 @@ export default function SurveyResult() {
                   </Grid>
 
                   <CardMedia
+                    onClick={(e) => {
+                      window.open('https://www.musinsa.com/app/', '_blank');
+                    }}
                     component="img"
                     height="150"
                     image={data.topImgUrl}
@@ -103,6 +106,12 @@ export default function SurveyResult() {
                     alt="unsplash image"
                   />
                   <CardMedia
+                    onClick={(e) => {
+                      window.open(
+                        'https://m-mixxo.elandmall.com/main/initMain.action',
+                        '_blank'
+                      );
+                    }}
                     component="img"
                     height="150"
                     image={data.bottomImgUrl}
