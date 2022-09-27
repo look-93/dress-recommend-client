@@ -67,15 +67,9 @@ export default function MyReview() {
     if (params.type === '1') {
       return (
         <>
-          <Link to="/realreview" style={{ textDecoration: 'none' }}>
-            <Button
-              sx={{ width: 200 }}
-              variant="contained"
-              onClick={usedReview}
-            >
-              확인
-            </Button>
-          </Link>
+          <Button sx={{ width: 200 }} variant="contained" onClick={usedReview}>
+            확인
+          </Button>
         </>
       );
     } else {
@@ -122,6 +116,7 @@ export default function MyReview() {
         }
       );
     }
+    window.location.replace('/realreview');
   };
 
   //2번일때

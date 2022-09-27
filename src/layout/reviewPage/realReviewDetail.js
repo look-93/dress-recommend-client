@@ -4,26 +4,16 @@ import { useEffect, useState } from 'react';
 import ReviewMessage from './reviewMessage';
 
 export default function RealReviewDetail(props) {
-  //console.log(props.urPk);
-
   const [reviewPkData, setReviewPkData] = useState([]);
   const getReviewByPk = async () => {
     const reviewByPkResult = await axios.get(
       'http://127.0.0.1:8080/review/getUsedReviewByPk/' + props.urPk
     );
-    //console.log(reviewByPkResult);
+
     setReviewPkData(reviewByPkResult.data);
   };
 
-  // const starRating = () => {
-  //   const rating = reviewPkData.rating;
-  //   for (let i = 0; rating; i++) {
-  //     console.log('*');
-  //   }
-  // };
-
   useEffect(() => {
-    //console.log(props.rPk);
     getReviewByPk();
   }, []);
 

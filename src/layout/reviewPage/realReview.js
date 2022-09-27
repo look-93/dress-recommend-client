@@ -3,7 +3,6 @@ import {
   Container,
   Button,
   Card,
-  CardActions,
   CardHeader,
   CardMedia,
   IconButton,
@@ -28,7 +27,6 @@ import SpeedDialIcon from '@mui/material/SpeedDialIcon';
 import SpeedDialAction from '@mui/material/SpeedDialAction';
 import StarOutlineIcon from '@mui/icons-material/StarOutline';
 import StarIcon from '@mui/icons-material/Star';
-import { useParams } from 'react-router-dom';
 
 export default function Realreview() {
   const actions = [
@@ -38,7 +36,7 @@ export default function Realreview() {
   ];
 
   const [datas, setDatas] = useState([]);
-  const [heartCnt, setHreatCnt] = useState(0);
+
   const uPk = sessionStorage.getItem('userPk');
 
   const allReview = async () => {
@@ -47,21 +45,6 @@ export default function Realreview() {
     );
     setDatas(results.data);
     console.log(results.data);
-  };
-
-  const addStar = async (rPk) => {
-    console.log(rPk);
-    await axios.post('http://localhost:8080/review/star/', {
-      upk: uPk,
-      rpk: rPk,
-    });
-
-    allReview();
-  };
-
-  const deleteStar = async (sPk) => {
-    await axios.delete('http://localhost:8080/review/star/' + sPk);
-    allReview();
   };
 
   useEffect(() => {
@@ -86,6 +69,20 @@ export default function Realreview() {
   };
   const onClickCloseRealReview = () => {
     setRealOpen(false);
+  };
+
+  const addStar = async (rPk) => {
+    console.log(rPk);
+    await axios.post('http://localhost:8080/review/star/', {
+      upk: uPk,
+      rpk: rPk,
+    });
+    allReview();
+  };
+
+  const deleteStar = async (sPk) => {
+    await axios.delete('http://localhost:8080/review/star/' + sPk);
+    allReview();
   };
 
   const StarBtn = (props) => {
@@ -192,7 +189,7 @@ export default function Realreview() {
                     isClicked={data.spk !== 0}
                   />
                 </Stack>
-                <CardHeader title={data.uid} subheader={data.createDate} />
+                <CardHeader title={data.uid} subheader={data.urCreateDate} />
                 <CardMedia
                   component="img"
                   height="150vn"

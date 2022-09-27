@@ -1,16 +1,7 @@
-import {
-  Container,
-  Grid,
-  Card,
-  CardHeader,
-  CardMedia,
-  TextField,
-  Stack,
-  Button,
-  Typography,
-} from '@mui/material';
+import { Container, Grid, Card, CardMedia } from '@mui/material';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
+import { createTheme } from '@mui/material/styles';
 
 export default function ReviewDetail(props) {
   //console.log(props.rPk);
@@ -19,7 +10,7 @@ export default function ReviewDetail(props) {
     const reviewByPkResult = await axios.get(
       'http://127.0.0.1:8080/review/' + props.rPk
     );
-    //console.log(reviewByPkResult);
+    console.log(reviewByPkResult);
     setReviewPkData(reviewByPkResult.data);
   };
 
@@ -27,7 +18,7 @@ export default function ReviewDetail(props) {
     //console.log(props.rPk);
     getReviewByPk();
   }, []);
-  //
+
   return (
     <Container maxWidth="md" component="main">
       <Grid

@@ -5,6 +5,7 @@ import {
   Typography,
   Stack,
   Dialog,
+  Avatar,
 } from '@mui/material';
 import Side from './sidevarList';
 import Main from './main';
@@ -17,7 +18,7 @@ import SurveyResult from '../board/surveyResult';
 import MyReview from '../board/myReview';
 import Realreview from '../reviewPage/realReview';
 import Star from '../board/star';
-
+import FaceIcon from '@mui/icons-material/Face';
 import { BrowserRouter, Routes, Route, Navigate, Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 
@@ -60,8 +61,8 @@ export default function Dashboard() {
     if (isLogin) {
       return (
         <>
+          <FaceIcon sx={{ mt: 0.5, color: 'text.primary' }} />
           <Button disabled>{userName}님</Button>
-
           <Link to="/" style={{ textDecoration: 'none' }}>
             <Button
               disableRipple
@@ -95,7 +96,7 @@ export default function Dashboard() {
 
   return (
     <BrowserRouter>
-      <AppBar position="absolute" padding="0" sx={{ bgcolor: 'white' }}>
+      <AppBar position="absolute" padding="0" sx={{ bgcolor: '#f5f5f5' }}>
         <Toolbar>
           <Side />
           <Link to="/" style={{ textDecoration: 'none', flexGrow: 1 }}>

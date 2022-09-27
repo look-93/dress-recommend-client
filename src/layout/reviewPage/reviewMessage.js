@@ -5,21 +5,22 @@ import {
   Button,
   Box,
   Divider,
-} from "@mui/material";
-import axios from "axios";
-import { useEffect } from "react";
-import { useState } from "react";
+} from '@mui/material';
+import axios from 'axios';
+import { useEffect } from 'react';
+import { useState } from 'react';
 
 export default function ReviewMessage(props) {
-  //console.log(props.urPk);
   //댓글입력 상태
-  const [message, setMessage] = useState("");
+  const [message, setMessage] = useState('');
   //댓글 입력 후 값이 들어있는지 유효성 검사
   const [isValid, setIsValid] = useState(false);
+  //댓글을 담는 배열
   const [comments, setComments] = useState([]);
+  //댓글 갯수
   const [commentCnt, setCommentCnt] = useState(0);
 
-  const uPk = sessionStorage.getItem("userPk");
+  const uPk = sessionStorage.getItem('userPk');
 
   useEffect(() => {
     getUsedReviewComment();
@@ -29,24 +30,26 @@ export default function ReviewMessage(props) {
     const r = await axios.get(
       `http://127.0.0.1:8080/review/comment/${props.urPk}`
     );
+    //댓글 최신순
     setComments(r.data.reverse());
+    //댓글 갯수
     setCommentCnt(r.data.length);
   };
 
   const submit = async () => {
-    await axios.post("http://127.0.0.1:8080/review/addComment/", {
+    await axios.post('http://127.0.0.1:8080/review/addComment/', {
       upk: uPk,
       urPk: props.urPk,
       message: message,
     });
-    setMessage("");
+    setMessage('');
     getUsedReviewComment();
   };
   return (
     <Stack component="form" sx={{ pt: 3, width: 330 }} autoComplete="off">
       <Typography variant="button">댓글 {commentCnt}</Typography>
 
-      <Stack direction={"row"}>
+      <Stack direction={'row'}>
         <TextField
           sx={{ pt: 1 }}
           id="standard-basic"
@@ -72,11 +75,11 @@ export default function ReviewMessage(props) {
       <Box
         sx={{
           mb: 2,
-          display: "flex",
-          flexDirection: "column",
+          display: 'flex',
+          flexDirection: 'column',
           height: 150,
-          overflow: "hidden",
-          overflowY: "scroll",
+          overflow: 'hidden',
+          overflowY: 'scroll',
         }}
       >
         {comments.map((comment, index) => (
