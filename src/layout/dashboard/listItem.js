@@ -41,10 +41,21 @@ export default function ListItem() {
         <p style={{ color: 'white', fontSize: 'x-small' }}>
           서울시 금천구 가산디지털2로 | (010)1234-5678 | abcde@gmail.com
         </p>
-        <img src="img/2.png" style={{ height: '50px', width: '50px' }} />
-        <img src="img/3.png" style={{ height: '50px', width: '50px' }} />
-        <img src="img/4.png" style={{ height: '50px', width: '50px' }} />
-        <img src="img/5.png" style={{ height: '50px', width: '50px' }} />
+        <a href="https://ko-kr.facebook.com//" target="_blank">
+          <img src="img/2.png" style={{ height: '50px', width: '50px' }} />
+        </a>
+        <a href="https://www.instagram.com/" target="_blank">
+          <img src="img/3.png" style={{ height: '50px', width: '50px' }} />
+        </a>
+        <a href="https://www.naver.com/" target="_blank">
+          <img src="img/4.png" style={{ height: '50px', width: '50px' }} />
+        </a>
+        <a
+          href="https://www.kakaocorp.com/page/service/service/KakaoTalk"
+          target="_blank"
+        >
+          <img src="img/5.png" style={{ height: '50px', width: '50px' }} />
+        </a>
       </div>
     </List>
   );
