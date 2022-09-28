@@ -11,6 +11,7 @@ import {
   SwipeableDrawer,
   Typography,
   Stack,
+  Avatar,
 } from '@mui/material';
 
 import FavoriteBorder from '@mui/icons-material/FavoriteBorder';
@@ -189,7 +190,14 @@ export default function Realreview() {
                     isClicked={data.spk !== 0}
                   />
                 </Stack>
-                <CardHeader title={data.uid} subheader={data.urCreateDate} />
+                <Stack direction="row">
+                  <Avatar
+                    alt="Remy Sharp"
+                    src={data.uimgUrl}
+                    sx={{ mt: 2.5, ml: 3, width: 24, height: 24 }}
+                  />
+                  <CardHeader title={data.uid} subheader={data.urCreateDate} />
+                </Stack>
                 <CardMedia
                   component="img"
                   height="150vn"

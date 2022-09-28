@@ -30,6 +30,9 @@ export default function ReviewDetail(props) {
         <Grid item xs={8}>
           <Card sx={{ width: 330 }}>
             <CardMedia
+              onClick={(e) => {
+                window.open('https://www.musinsa.com/app/', '_blank');
+              }}
               component="img"
               height="200"
               sx={{ objectFit: 'contain' }}
@@ -37,6 +40,12 @@ export default function ReviewDetail(props) {
               alt="image"
             />
             <CardMedia
+              onClick={(e) => {
+                window.open(
+                  'https://m-mixxo.elandmall.com/main/initMain.action',
+                  '_blank'
+                );
+              }}
               component="img"
               height="200"
               sx={{ objectFit: 'contain' }}
